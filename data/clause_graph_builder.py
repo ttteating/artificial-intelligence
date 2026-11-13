@@ -80,9 +80,10 @@ def build_graph(sample: dict, include_same_section: bool = True) -> nx.DiGraph:
     clauses = sample.get("clauses", {})
     g = nx.DiGraph()
     
-    # Add nodes
-    for evidence_id in clauses:
-        g.add_node(evidence_id)
+    # Add nodes (keep the clause text on the node so downstream consumers
+    # e.g. path_classifier.sem_sim can read it from the graph)
+    for evidence_id, evidence_text in clauses.items():
+        g.add_node(evidence_id, text=evidence_text)
     
     unresolved_count = 0
     

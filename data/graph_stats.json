@@ -1,14 +1,12 @@
 {
   "edge_type_dist": {
-    "same_section": 4282,
-    "cites": 190,
-    "exception_of": 53,
-    "conditions_on": 3
+    "same_section": 15,
+    "cites": 1
   },
-  "total_unresolved": 6881,
-  "total_edges": 4528,
-  "total_nodes": 4491,
-  "sample_count": 2900,
-  "isolated_nodes_ratio": 0.40547762191048764,
-  "avg_edges_per_contract": 1.5613793103448277
+  "total_unresolved": 29,
+  "total_edges": 16,
+  "total_nodes": 10,
+  "sample_count": 5,
+  "isolated_nodes_ratio": 0.2,
+  "avg_edges_per_contract": 3.2
 }

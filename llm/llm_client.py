@@ -74,6 +74,17 @@ class LLMClient:
             # For structured calls in smoke test, return a minimal valid JSON if possible
             if "results" in prompt.lower() or '"results"' in prompt:
                 content = '{"results": [{"id": 0, "valid": true, "confidence": 0.9, "reason": "test"}, {"id": 1, "valid": false, "confidence": 0.1, "reason": "test"}, {"id": 2, "valid": true, "confidence": 0.5, "reason": "test"}]}'
+            elif "rewards" in prompt.lower():
+                content = '{"rewards": [{"id": 0, "reward": 0.9, "touched_key_clause": true, "brief_reason": "batch mock 0"}, {"id": 1, "reward": 0.1, "touched_key_clause": false, "brief_reason": "batch mock 1"}, {"id": 2, "reward": 0.5, "touched_key_clause": true, "brief_reason": "batch mock 2"}]}'
+            elif "reward" in prompt.lower():
+                if "Case 1" in prompt or "接近判定点" in prompt:
+                    content = '{"reward": 0.9, "touched_key_clause": true, "brief_reason": "路径触及例外与条件判定点，结构连贯。"}'
+                elif "Case 2" in prompt or "明显偏离" in prompt:
+                    content = '{"reward": 0.1, "touched_key_clause": false, "brief_reason": "路径与问题语义无关，存在不合理跳跃。"}'
+                elif "Case 3" in prompt or "部分触及" in prompt:
+                    content = '{"reward": 0.5, "touched_key_clause": true, "brief_reason": "触及定义条款，但未覆盖例外与条件判定点。"}'
+                else:
+                    content = '{"reward": 0.5, "touched_key_clause": false, "brief_reason": "Default mock."}'
             elif "valid" in prompt.lower() or '"valid"' in prompt:
                 if "Case 1" in prompt or "Obvious Valid" in prompt:
                     content = '{"valid": true, "confidence": 0.9, "reason": "Strong legal link."}'
