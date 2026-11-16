@@ -9,3 +9,10 @@ Thumbs.db
 .vscode/
 .idea/
 *.log
+
+.venv/
+**/__pycache__/
+results/cache/
+data/raw/
+models/pc_*.lgb.meta.json
+models/*.synthetic_backup*
