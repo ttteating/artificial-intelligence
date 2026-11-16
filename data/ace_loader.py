@@ -214,3 +214,60 @@ if __name__ == "__main__":
         print("Success: dev + heldout + train_rest == 3600")
     else:
         print(f"Failure: Total count {total_train_source} != 3600")
+
+
+# ---------------------------------------------------------------- A 侧契约入口
+def load_raw(path: Optional[Path] = None, split: str = "train",
+             raw_dir: Optional[Path] = None):
+    """`data/corpus.py` 需要的装载入口（A 侧补的适配层，不改动上面的切分逻辑）。
+
+    契约有点特殊，因为 Corpus 是"索引驱动"的：
+
+    * split="train"（默认）→ 返回 **train.json 的索引顺序**，即 list[int]。
+      Corpus 拿到后用 split.json 里的索引数组（train_rest / dev / heldout）
+      二次定位到样本，这样可以保证 dev/heldout 的样本集合与 split.json 严格一致。
+    * split="test" → 返回 test.json 的 scenario 列表（list[dict]）。
+
+    参数兼容两种调用方式：
+      load_raw(split="train", raw_dir=...)          # Corpus.load()
+      load_raw(test_path, split="test")             # Corpus.load() 的测试集分支
+    """
+    raw_dir = Path(raw_dir) if raw_dir is not None else Path("data") / "raw"
+
+    if split == "test":
+        p = Path(path) if path is not None else raw_dir / TEST_JSON
+        payload = json.loads(Path(p).read_text(encoding="utf-8"))
+        return list(payload.get("scenarios", []))
+
+    p = Path(path) if path is not None and str(path).endswith(".json") else raw_dir / TRAIN_JSON
+    payload = json.loads(Path(p).read_text(encoding="utf-8"))
+    return list(range(len(payload.get("scenarios", []))))
+
+
+def normalize_split(raw: Dict[str, Any]) -> Dict[str, Any]:
+    """把 split.json 的 {'metadata','splits','distributions'} 归一成 Corpus 的键面。
+
+    目标键：sids / train_rest / dev / heldout，其中
+      * sids[i]  —— 第 i 个 train.json 样本的稳定 id（tr00000 起）
+      * train_rest[i] / dev[i] / heldout[i] —— 指向 sids 的下标数组
+
+    splits 里的 train/dev/heldout 本来就是 train.json 的下标数组，因此这里
+    只需要补一层 sids（长度取所有下标的最大值 + 1）并把 train 改名为 train_rest。
+    """
+    if "sids" in raw:
+        return raw
+    sp = raw.get("splits", {}) or {}
+    idx = {k: [int(i) for i in sp.get(k, [])] for k in ("train", "dev", "heldout")}
+    n = 0
+    for v in idx.values():
+        if v:
+            n = max(n, max(v) + 1)
+    out = {
+        "sids": [f"tr{i:05d}" for i in range(n)],
+        "train_rest": idx["train"],
+        "dev": idx["dev"],
+        "heldout": idx["heldout"],
+        "metadata": raw.get("metadata", {}),
+        "distributions": raw.get("distributions", {}),
+    }
+    return out

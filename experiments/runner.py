@@ -54,8 +54,15 @@ def run_condition(corpus, condition: str, split: str, ctx: Context,
                   limit: int | None = None, verbose: bool = True,
                   oracle_path: Path | None = None) -> list[Row]:
     sids = corpus.ids(split)
-    if limit:
-        sids = sids[:limit]
+    if limit and limit < len(sids):
+        # ⚠️ ACE 的 train.json 是按标签排好序的，`sids[:limit]` 会取到"清一色 Compliant"
+        # 的前缀（dev 前 300 条里 200 条 Compliant），F1 会系统性偏低到 0.34。
+        # 因此限量子集一律用固定种子随机抽样，保证类别比例接近全集。
+        import random
+
+        rng = random.Random(ctx.seed * 7919 + limit)
+        picked = set(rng.sample(sids, limit))
+        sids = [s for s in sids if s in picked]
     oracle_path = oracle_path or (CACHE / f"oracle_{split}.json")
     oracle = load_oracle(oracle_path)
 

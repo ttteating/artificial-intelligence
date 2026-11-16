@@ -1,0 +1,634 @@
+{
+ "name": "llm_misjudge",
+ "answer": "Compliant",
+ "confidence": 0.5904,
+ "expanded_nodes": 5,
+ "steps": 2,
+ "path": [
+  {
+   "src": "ROOT",
+   "edge_type": "ENTRY",
+   "dst": "evidence_1#s0"
+  },
+  {
+   "src": "evidence_1#s0",
+   "edge_type": "EXCEPTIONS",
+   "dst": "evidence_1#s1"
+  }
+ ],
+ "trace": [
+  {
+   "action": null,
+   "depth": 0,
+   "g": 0.0,
+   "h": 3.9995,
+   "f": 5.9993,
+   "label": "Compliant",
+   "conf": 0.4024,
+   "clauses": [],
+   "expanded": true,
+   "clf_score": 0.40241345639988507,
+   "adjust": -0.15,
+   "llm_reward": 0.0,
+   "rule_mask": []
+  },
+  {
+   "action": null,
+   "depth": 1,
+   "g": 1.0,
+   "h": 2.2054,
+   "f": 4.308,
+   "label": "Compliant",
+   "conf": 0.5539,
+   "clauses": [
+    "evidence_1"
+   ],
+   "expanded": true,
+   "clf_score": 0.5538573969204225,
+   "adjust": 0.0108,
+   "llm_reward": 0.2812,
+   "rule_mask": []
+  },
+  {
+   "action": null,
+   "depth": 2,
+   "g": 2.0,
+   "h": 0.0002,
+   "f": 2.0004,
+   "label": "Compliant",
+   "conf": 0.5904,
+   "clauses": [
+    "evidence_1"
+   ],
+   "expanded": true,
+   "clf_score": 0.5904459634638057,
+   "adjust": 0.0106,
+   "llm_reward": 0.5733,
+   "rule_mask": []
+  },
+  {
+   "action": null,
+   "depth": 3,
+   "g": 3.0,
+   "h": 0.0004,
+   "f": 3.0005,
+   "label": "Non-Compliant",
+   "conf": 0.5034,
+   "clauses": [
+    "evidence_1",
+    "evidence_2"
+   ],
+   "expanded": true,
+   "clf_score": 0.5034116409895142,
+   "adjust": 0.1672,
+   "llm_reward": 0.4946,
+   "rule_mask": [
+    "R5"
+   ]
+  },
+  {
+   "action": null,
+   "depth": 4,
+   "g": 4.0,
+   "h": 0.0005,
+   "f": 4.0007,
+   "label": "Non-Compliant",
+   "conf": 0.5215,
+   "clauses": [
+    "evidence_1",
+    "evidence_2"
+   ],
+   "expanded": true,
+   "clf_score": 0.5215302972329333,
+   "adjust": 0.06,
+   "llm_reward": 0.5072,
+   "rule_mask": []
+  }
+ ],
+ "meta": {
+  "condition": "H",
+  "sid": "tr01689",
+  "gold": "Non-Compliant",
+  "pred": "Compliant",
+  "steps": 2,
+  "expanded": 5,
+  "confidence": 0.5904,
+  "llm_calls": 20,
+  "n_clauses": 4,
+  "clauses": {
+   "evidence_1": "Without limiting the aforesaid, the existence of discussions between the Parties regarding the Proposed Transaction shall constitute Confidential Information hereunder. | a. The Receiving Party shall hold confidential an…",
+   "evidence_2": "a. \"Confidential Information\" shall mean all confidential or proprietary written, recorded, electronic or oral information or data (including without limitation research, developmental, engineering, manufacturing, techni…",
+   "evidence_3": "a. \"Confidential Information\" shall mean all confidential or proprietary written, recorded, electronic or oral information or data (including without limitation research, developmental, engineering, manufacturing, techni…",
+   "evidence_5": "a. \"Confidential Information\" shall mean all confidential or proprietary written, recorded, electronic or oral information or data (including without limitation research, developmental, engineering, manufacturing, techni…"
+  },
+  "scenario": "Company A (the Receiving Party) is in discussions with Company B (the Disclosing Party) regarding a potential acquisition (the Proposed Transaction). During these discussions, Company B provides Company A with a detailed financial report marked as 'Confidential Information.' To evaluate the Proposed Transaction, Company A decides to involve its external financial consultant, who is under a strict non-disclosure agreement (NDA) with Company A. However, instead of sharing the financial report directly, Company A's representative summarizes the key financial metrics and projections in a presentation deck. This deck is uploaded to a shared cloud folder labeled 'Project Alpha' and shared with the consultant via a link sent through a messaging app. The folder contains other documents, including a draft press release discussing the potential acquisition, which is not marked as confidential. The…",
+  "path": [
+   {
+    "src": "ROOT",
+    "edge_type": "ENTRY",
+    "dst": "evidence_1#s0"
+   },
+   {
+    "src": "evidence_1#s0",
+    "edge_type": "EXCEPTIONS",
+    "dst": "evidence_1#s1"
+   }
+  ]
+ },
+ "n_nodes_raw": 19,
+ "tree": [
+  {
+   "tid": 0,
+   "parent": null,
+   "children": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "depth": 0,
+   "node_id": null,
+   "clause": null,
+   "role": null,
+   "action": null,
+   "g": 0.0,
+   "h": 3.9995,
+   "f": 5.9993,
+   "visits": 0,
+   "value": 0.0,
+   "conf": 0.4024,
+   "label": "Compliant",
+   "status": "goal",
+   "flags": [
+    "success_path"
+   ]
+  },
+  {
+   "tid": 1,
+   "parent": 0,
+   "children": [],
+   "depth": 1,
+   "node_id": "evidence_2#s0",
+   "clause": "evidence_2",
+   "role": "DEF",
+   "action": {
+    "src": "ROOT",
+    "edge_type": "ENTRY",
+    "dst": "evidence_2#s0"
+   },
+   "g": 1.0,
+   "h": 3.9995,
+   "f": 4.9995,
+   "visits": 0,
+   "value": 0.0,
+   "conf": null,
+   "label": null,
+   "status": "pruned",
+   "flags": [
+    "llm_rejected"
+   ]
+  },
+  {
+   "tid": 2,
+   "parent": 0,
+   "children": [],
+   "depth": 1,
+   "node_id": "evidence_3#s0",
+   "clause": "evidence_3",
+   "role": "DEF",
+   "action": {
+    "src": "ROOT",
+    "edge_type": "ENTRY",
+    "dst": "evidence_3#s0"
+   },
+   "g": 1.0,
+   "h": 3.9995,
+   "f": 4.9995,
+   "visits": 0,
+   "value": 0.0,
+   "conf": null,
+   "label": null,
+   "status": "pruned",
+   "flags": [
+    "llm_rejected"
+   ]
+  },
+  {
+   "tid": 3,
+   "parent": 0,
+   "children": [],
+   "depth": 1,
+   "node_id": "evidence_5#s0",
+   "clause": "evidence_5",
+   "role": "DEF",
+   "action": {
+    "src": "ROOT",
+    "edge_type": "ENTRY",
+    "dst": "evidence_5#s0"
+   },
+   "g": 1.0,
+   "h": 3.9995,
+   "f": 4.9995,
+   "visits": 0,
+   "value": 0.0,
+   "conf": null,
+   "label": null,
+   "status": "pruned",
+   "flags": [
+    "llm_rejected"
+   ]
+  },
+  {
+   "tid": 4,
+   "parent": 0,
+   "children": [
+    5,
+    6,
+    7,
+    8
+   ],
+   "depth": 1,
+   "node_id": "evidence_1#s0",
+   "clause": "evidence_1",
+   "role": "OBL",
+   "action": {
+    "src": "ROOT",
+    "edge_type": "ENTRY",
+    "dst": "evidence_1#s0"
+   },
+   "g": 1.0,
+   "h": 2.2054,
+   "f": 4.3189,
+   "visits": 0,
+   "value": 0.0,
+   "conf": 0.5539,
+   "label": "Compliant",
+   "status": "goal",
+   "flags": [
+    "success_path"
+   ]
+  },
+  {
+   "tid": 5,
+   "parent": 4,
+   "children": [],
+   "depth": 2,
+   "node_id": "evidence_2#s0",
+   "clause": "evidence_2",
+   "role": "DEF",
+   "action": {
+    "src": "evidence_1#s0",
+    "edge_type": "COMPLEMENTS",
+    "dst": "evidence_2#s0"
+   },
+   "g": 2.0,
+   "h": 2.2054,
+   "f": 4.2054,
+   "visits": 0,
+   "value": 0.0,
+   "conf": null,
+   "label": null,
+   "status": "pruned",
+   "flags": [
+    "llm_rejected"
+   ]
+  },
+  {
+   "tid": 6,
+   "parent": 4,
+   "children": [],
+   "depth": 2,
+   "node_id": "evidence_3#s0",
+   "clause": "evidence_3",
+   "role": "DEF",
+   "action": {
+    "src": "evidence_1#s0",
+    "edge_type": "COMPLEMENTS",
+    "dst": "evidence_3#s0"
+   },
+   "g": 2.0,
+   "h": 2.2054,
+   "f": 4.2054,
+   "visits": 0,
+   "value": 0.0,
+   "conf": null,
+   "label": null,
+   "status": "pruned",
+   "flags": [
+    "llm_rejected"
+   ]
+  },
+  {
+   "tid": 7,
+   "parent": 4,
+   "children": [],
+   "depth": 2,
+   "node_id": "evidence_5#s0",
+   "clause": "evidence_5",
+   "role": "DEF",
+   "action": {
+    "src": "evidence_1#s0",
+    "edge_type": "COMPLEMENTS",
+    "dst": "evidence_5#s0"
+   },
+   "g": 2.0,
+   "h": 2.2054,
+   "f": 4.2054,
+   "visits": 0,
+   "value": 0.0,
+   "conf": null,
+   "label": null,
+   "status": "pruned",
+   "flags": [
+    "llm_rejected"
+   ]
+  },
+  {
+   "tid": 8,
+   "parent": 4,
+   "children": [
+    9,
+    10,
+    11,
+    12
+   ],
+   "depth": 2,
+   "node_id": "evidence_1#s1",
+   "clause": "evidence_1",
+   "role": "EXC",
+   "action": {
+    "src": "evidence_1#s0",
+    "edge_type": "EXCEPTIONS",
+    "dst": "evidence_1#s1"
+   },
+   "g": 2.0,
+   "h": 0.0002,
+   "f": 2.0109,
+   "visits": 0,
+   "value": 0.0,
+   "conf": 0.5904,
+   "label": "Compliant",
+   "status": "goal",
+   "flags": [
+    "success_path"
+   ]
+  },
+  {
+   "tid": 9,
+   "parent": 8,
+   "children": [],
+   "depth": 3,
+   "node_id": "evidence_2#s0",
+   "clause": "evidence_2",
+   "role": "DEF",
+   "action": {
+    "src": "evidence_1#s0",
+    "edge_type": "COMPLEMENTS",
+    "dst": "evidence_2#s0"
+   },
+   "g": 3.0,
+   "h": 0.0002,
+   "f": 3.0002,
+   "visits": 0,
+   "value": 0.0,
+   "conf": null,
+   "label": null,
+   "status": "pruned",
+   "flags": [
+    "llm_rejected"
+   ]
+  },
+  {
+   "tid": 10,
+   "parent": 8,
+   "children": [],
+   "depth": 3,
+   "node_id": "evidence_3#s0",
+   "clause": "evidence_3",
+   "role": "DEF",
+   "action": {
+    "src": "evidence_1#s0",
+    "edge_type": "COMPLEMENTS",
+    "dst": "evidence_3#s0"
+   },
+   "g": 3.0,
+   "h": 0.0002,
+   "f": 3.0002,
+   "visits": 0,
+   "value": 0.0,
+   "conf": null,
+   "label": null,
+   "status": "pruned",
+   "flags": [
+    "llm_rejected"
+   ]
+  },
+  {
+   "tid": 11,
+   "parent": 8,
+   "children": [],
+   "depth": 3,
+   "node_id": "evidence_5#s0",
+   "clause": "evidence_5",
+   "role": "DEF",
+   "action": {
+    "src": "evidence_1#s0",
+    "edge_type": "COMPLEMENTS",
+    "dst": "evidence_5#s0"
+   },
+   "g": 3.0,
+   "h": 0.0002,
+   "f": 3.0002,
+   "visits": 0,
+   "value": 0.0,
+   "conf": null,
+   "label": null,
+   "status": "pruned",
+   "flags": [
+    "llm_rejected"
+   ]
+  },
+  {
+   "tid": 12,
+   "parent": 8,
+   "children": [
+    13,
+    14,
+    15,
+    16,
+    17,
+    18
+   ],
+   "depth": 3,
+   "node_id": "evidence_2#s0",
+   "clause": "evidence_2",
+   "role": "DEF",
+   "action": {
+    "src": "evidence_1#s0",
+    "edge_type": "COMPLEMENTS",
+    "dst": "evidence_2#s0"
+   },
+   "g": 3.0,
+   "h": 0.0004,
+   "f": 3.1677,
+   "visits": 0,
+   "value": 0.0,
+   "conf": 0.5034,
+   "label": "Non-Compliant",
+   "status": "expanded",
+   "flags": [
+    "redundant"
+   ]
+  },
+  {
+   "tid": 13,
+   "parent": 12,
+   "children": [],
+   "depth": 4,
+   "node_id": "evidence_1#s1",
+   "clause": "evidence_1",
+   "role": "EXC",
+   "action": {
+    "src": "evidence_1#s0",
+    "edge_type": "EXCEPTIONS",
+    "dst": "evidence_1#s1"
+   },
+   "g": 4.0,
+   "h": 0.0004,
+   "f": 4.0004,
+   "visits": 0,
+   "value": 0.0,
+   "conf": null,
+   "label": null,
+   "status": "pruned",
+   "flags": [
+    "rule_pruned"
+   ]
+  },
+  {
+   "tid": 14,
+   "parent": 12,
+   "children": [],
+   "depth": 4,
+   "node_id": "evidence_3#s0",
+   "clause": "evidence_3",
+   "role": "DEF",
+   "action": {
+    "src": "evidence_1#s0",
+    "edge_type": "COMPLEMENTS",
+    "dst": "evidence_3#s0"
+   },
+   "g": 4.0,
+   "h": 0.0004,
+   "f": 4.0004,
+   "visits": 0,
+   "value": 0.0,
+   "conf": null,
+   "label": null,
+   "status": "pruned",
+   "flags": [
+    "llm_rejected"
+   ]
+  },
+  {
+   "tid": 15,
+   "parent": 12,
+   "children": [],
+   "depth": 4,
+   "node_id": "evidence_5#s0",
+   "clause": "evidence_5",
+   "role": "DEF",
+   "action": {
+    "src": "evidence_1#s0",
+    "edge_type": "COMPLEMENTS",
+    "dst": "evidence_5#s0"
+   },
+   "g": 4.0,
+   "h": 0.0004,
+   "f": 4.0004,
+   "visits": 0,
+   "value": 0.0,
+   "conf": null,
+   "label": null,
+   "status": "pruned",
+   "flags": [
+    "llm_rejected"
+   ]
+  },
+  {
+   "tid": 16,
+   "parent": 12,
+   "children": [],
+   "depth": 4,
+   "node_id": "evidence_3#s0",
+   "clause": "evidence_3",
+   "role": "DEF",
+   "action": {
+    "src": "evidence_2#s0",
+    "edge_type": "COMPLEMENTS",
+    "dst": "evidence_3#s0"
+   },
+   "g": 4.0,
+   "h": 0.0004,
+   "f": 4.0004,
+   "visits": 0,
+   "value": 0.0,
+   "conf": null,
+   "label": null,
+   "status": "pruned",
+   "flags": [
+    "llm_rejected"
+   ]
+  },
+  {
+   "tid": 17,
+   "parent": 12,
+   "children": [],
+   "depth": 4,
+   "node_id": "evidence_5#s0",
+   "clause": "evidence_5",
+   "role": "DEF",
+   "action": {
+    "src": "evidence_2#s0",
+    "edge_type": "COMPLEMENTS",
+    "dst": "evidence_5#s0"
+   },
+   "g": 4.0,
+   "h": 0.0004,
+   "f": 4.0004,
+   "visits": 0,
+   "value": 0.0,
+   "conf": null,
+   "label": null,
+   "status": "pruned",
+   "flags": [
+    "llm_rejected"
+   ]
+  },
+  {
+   "tid": 18,
+   "parent": 12,
+   "children": [],
+   "depth": 4,
+   "node_id": "evidence_1#s0",
+   "clause": "evidence_1",
+   "role": "OBL",
+   "action": {
+    "src": "evidence_2#s0",
+    "edge_type": "CITES",
+    "dst": "evidence_1#s0"
+   },
+   "g": 4.0,
+   "h": 0.0005,
+   "f": 4.0608,
+   "visits": 0,
+   "value": 0.0,
+   "conf": 0.5215,
+   "label": "Non-Compliant",
+   "status": "expanded",
+   "flags": [
+    "redundant"
+   ]
+  }
+ ]
+}

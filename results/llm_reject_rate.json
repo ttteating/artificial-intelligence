@@ -1,0 +1,29 @@
+{
+  "reference": 390,
+  "rows": [
+    {
+      "condition": "A2",
+      "scenarios": 600,
+      "llm_vetoes": 1385,
+      "false_kills": 275,
+      "false_kill_rate": 0.19855595667870035,
+      "suspicious": 0
+    },
+    {
+      "condition": "H",
+      "scenarios": 600,
+      "llm_vetoes": 1177,
+      "false_kills": 253,
+      "false_kill_rate": 0.21495327102803738,
+      "suspicious": 0
+    },
+    {
+      "condition": "M1",
+      "scenarios": 600,
+      "llm_vetoes": 5635,
+      "false_kills": 718,
+      "false_kill_rate": 0.12741792369121563,
+      "suspicious": 0
+    }
+  ]
+}

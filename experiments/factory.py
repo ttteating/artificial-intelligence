@@ -37,7 +37,10 @@ CONDITIONS = {
     "H":  dict(kernel="astar", rules=True,  h="ga",   llm="mock", clf=True),
 }
 
-LAMBDA = dict(llm=0.35, clf=0.30, h=1.5, risk=0.25)
+# dev 上 18 组网格搜索（experiments/run_lambda_grid.py）的最优组合。
+# 网格里 F1 恒为 0.6437、扩展节点只在 4.57~4.58 之间抖动，说明融合权重不是瓶颈；
+# 这里取 score 最高的 (0.15, 0.30, 0.40)，同时保留可追溯的 logs/lambda_grid.json。
+LAMBDA = dict(llm=0.15, clf=0.30, h=1.5, risk=0.40)
 
 # config.yaml 的 mcts 段默认值。此前这些参数在 run_kernel 里被硬编码成 90/1.3/2/1.0，
 # 恰好与配置相同，所以"改配置不生效"这个 bug 一直没暴露出来。
@@ -110,13 +113,23 @@ class FusedPriority:
 
         key() 只含条款集合与边类型多重集，不含具体 facet 序列；两个 key 相同但
         facet 不同的状态进入特征后并不相同，所以缓存键要带上 `state.nodes`。
+
+        分类器有两种装配：B 线 LightGBM（`hybrid/path_value_lgb.py`，走
+        `score_state`，需要 llm_reward / rule_risk 两个实时信号）与 A 线的
+        逻辑回归兜底（走 15 维决策特征 + `proba`）。接口按鸭子类型分派。
         """
         if self.clf is None:
             return 0.5
         k = (state.key(), state.nodes)
         if k not in self._c:
-            x = self._sd.features(state)
-            self._c[k] = float(self.clf.proba(x))
+            if hasattr(self.clf, "score_state"):
+                risk = (float(self.rules.risk(state, state.path()[-1], self.p))
+                        if state.used_edges else 0.0)
+                self._c[k] = float(self.clf.score_state(
+                    self.p, state, llm_reward=self.llm_reward(state), risk=risk))
+            else:
+                x = self._sd.features(state)
+                self._c[k] = float(self.clf.proba(x))
         return self._c[k]
 
     def risk(self, state: State) -> float:
@@ -168,7 +181,14 @@ class FusedPriority:
 
 
 class HybridRules:
-    """规则掩码 + LLM 合法性校验的组合（A2 / H / M1 用）。"""
+    """规则掩码 + LLM 合法性校验的组合（A2 / H / M1 用）。
+
+    文档 §2.3 Day2 要求"低置信度进入可疑缓冲区"：LLM 判合法但置信度低
+    （< `SUSPECT_CONF`）的动作不当场丢弃，而是排到候选列表末尾——既不浪费一次
+    可能正确的展开，也不让它抢在高置信度动作前面。计数写入 `SearchResult.llm_suspicious`。
+    """
+
+    SUSPECT_CONF = 0.40
 
     def __init__(self, rules: RuleEngine, evaluator, problem, cache_size: int = 4096):
         self.rules = rules
@@ -176,6 +196,8 @@ class HybridRules:
         self.p = problem
         self._cache: dict[tuple, tuple[bool, float]] = {}
         self.rejected = 0
+        self.suspicious = 0
+        self.veto_log: list[dict] = []      # 供 LLM 误杀率统计（见 tools/llm_reject_report.py）
 
     @property
     def pruned(self) -> int:
@@ -196,20 +218,27 @@ class HybridRules:
         allowed, pruned = self.rules.mask(state, actions, problem)
         if self.ev is None:
             return allowed, pruned
-        keep = []
+        keep, suspect = [], []
         for a in allowed:
             k = (state.key(), a.src, a.edge_type, a.dst)
             if k not in self._cache:
                 self._cache[k] = self.ev.action_valid(state, a, problem.text)
-            ok, _conf = self._cache[k]
-            if ok:
-                keep.append(a)
-            else:
+            ok, conf = self._cache[k]
+            if not ok:
                 self.rejected += 1
                 pruned.append(a)
-        if not keep and allowed:
+                self.veto_log.append({"src": a.src, "edge_type": a.edge_type,
+                                      "dst": a.dst, "conf": float(conf)})
+            elif float(conf) < self.SUSPECT_CONF:
+                suspect.append(a)          # 可疑缓冲区：合法但低置信
+            else:
+                keep.append(a)
+        self.suspicious += len(suspect)
+        # 低置信动作排到后面：搜索若在预算内就能避开它们，避不开也能试到
+        ordered = keep + suspect
+        if not ordered and allowed:
             return allowed[:1], pruned
-        return keep, pruned
+        return ordered, pruned
 
     def risk(self, state: State, action: Action, problem=None) -> float:
         return self.rules.risk(state, action, problem or self.p)
@@ -284,6 +313,7 @@ def run_kernel(problem: SearchProblem, priority, spec: dict, ctx: Context):
     # 计数量回填（规则剪枝 / LLM 驳回 / LLM 调用）
     res.pruned_by_rule = getattr(problem.rules, "pruned", 0)
     res.llm_rejected = getattr(problem.rules, "rejected", 0)
+    res.llm_suspicious = getattr(problem.rules, "suspicious", 0)
     if priority is not None and priority.ev is not None:
         res.llm_calls = getattr(priority.ev, "calls", 0)
     return res

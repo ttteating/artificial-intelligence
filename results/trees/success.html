@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<title>success · 搜索树</title>
+<style>
+ body{margin:0;padding:24px 28px;background:#f8f9fa;color:#212529;
+      font:14px/1.6 Inter,"Segoe UI","Microsoft YaHei",sans-serif}
+ h1{font-size:19px;margin:0 0 4px} .sub{color:#868e96;font-size:12px;margin-bottom:16px}
+ .card{background:#fff;border:1px solid #e9ecef;border-radius:10px;padding:14px;margin-bottom:16px;
+       overflow:auto}
+ table{border-collapse:collapse;font-size:12px;width:100%}
+ th,td{border-bottom:1px solid #f1f3f5;padding:5px 8px;text-align:left}
+ th{background:#f8f9fa;font-weight:600} code{background:#f1f3f5;padding:1px 5px;border-radius:4px}
+</style></head><body>
+<h1>success</h1>
+<div class="sub">answer=<code>Compliant</code>
+ conf=0.684 · 扩展 5 节点 · 路径 4 步 ·
+ {&quot;condition&quot;: &quot;H&quot;, &quot;sid&quot;: &quot;tr00632&quot;, &quot;gold&quot;: &quot;Compliant&quot;, &quot;pred&quot;: &quot;Compliant&quot;, &quot;steps&quot;: 4, &quot;expanded&quot;: 5, &quot;confidence&quot;: 0.6839, &quot;llm_calls&quot;: 24, &quot;n_clauses&quot;: 2, &quot;clauses&quot;: {&quot;evidence_3&quot;: &quot;Any disclosure of any Confidential Information to the Receiving Party made during the Initial Term shall continue to be subject to this Agreement for a period of 2 years thereafter, provided that any trade secret shall b…&quot;, &quot;evidence_4&quot;: &quot;5.3 Subject to section 5.4, within 10 days of a written request by the Disclosing Party, the Receiving Party shall, unless otherwise precluded by any legal obligation: | (d) retain electronic Confidential Information des…&quot;}, &quot;scenario&quot;: &quot;During the Initial Term of a confidentiality agreement, Company A (the Receiving Party) received a set of confidential documents from Company B (the Disclosing Party) for a Permitted Purpose. These documents included trade secrets and other sensitive information. After the Initial Term ended, Company B sent a written request to Company A, invoking section 5.3, to return or destroy all Confidential Information within 10 days. Company A complied by returning all original documents and securely deleting electronic copies of the Confidential Information described in subsection 5.3(c). However, Company A retained a summary report it had prepared during the Initial Term, which contained derivative insights based on the Confidential Information. This report was stored in a secure internal database and marked as &#x27;Confidential.&#x27; When questioned, Company A cited section 5.4, which explicitly state…&quot;, &quot;path&quot;: [{&quot;src&quot;: &quot;ROOT&quot;, &quot;edge_type&quot;: &quot;ENTRY&quot;, &quot;dst&quot;: &quot;evidence_3#s0&quot;}, {&quot;src&quot;: &quot;evidence_3#s0&quot;, &quot;edge_type&quot;: &quot;EXCEPTIONS&quot;, &quot;dst&quot;: &quot;evidence_3#s1&quot;}, {&quot;src&quot;: &quot;evidence_3#s0&quot;, &quot;edge_type&quot;: &quot;EXCEPTIONS&quot;, &quot;dst&quot;: &quot;evidence_3#s3&quot;}, {&quot;src&quot;: &quot;evidence_3#s0&quot;, &quot;edge_type&quot;: &quot;CITES&quot;, &quot;dst&quot;: &quot;evidence_4#s0&quot;}]}</div>
+<div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="584" height="592" viewBox="0 0 584 592" font-family="Inter,Segoe UI,Microsoft YaHei,sans-serif">
+<rect width="584" height="592" fill="#ffffff"/>
+<path d="M292.0,74.0 C292.0,103.0 292.0,103.0 292.0,132.0" fill="none" stroke="#adb5bd" stroke-width="1.6" opacity="0.85"/>
+<text x="292.0" y="101.0" font-size="9" fill="#adb5bd" text-anchor="middle">ENTRY</text>
+<path d="M292.0,170.0 C292.0,199.0 292.0,199.0 292.0,228.0" fill="none" stroke="#e03131" stroke-width="1.6" opacity="0.85"/>
+<text x="292.0" y="197.0" font-size="9" fill="#e03131" text-anchor="middle">EXCEPTIONS</text>
+<path d="M292.0,266.0 C292.0,295.0 292.0,295.0 292.0,324.0" fill="none" stroke="#e03131" stroke-width="1.6" opacity="0.85"/>
+<text x="292.0" y="293.0" font-size="9" fill="#e03131" text-anchor="middle">EXCEPTIONS</text>
+<path d="M292.0,362.0 C292.0,391.0 124.0,391.0 124.0,420.0" fill="none" stroke="#e03131" stroke-width="1.6" opacity="0.85"/>
+<text x="208.0" y="389.0" font-size="9" fill="#e03131" text-anchor="middle">EXCEPTIONS</text>
+<path d="M292.0,362.0 C292.0,391.0 292.0,391.0 292.0,420.0" fill="none" stroke="#1c7ed6" stroke-width="1.6" opacity="0.85"/>
+<text x="292.0" y="389.0" font-size="9" fill="#1c7ed6" text-anchor="middle">DEPENDS_ON</text>
+<path d="M292.0,362.0 C292.0,391.0 460.0,391.0 460.0,420.0" fill="none" stroke="#b197fc" stroke-width="1.6" opacity="0.85"/>
+<text x="376.0" y="389.0" font-size="9" fill="#b197fc" text-anchor="middle">CITES</text>
+<g><title>state: None  depth=0
+g=0.0 h=3.9995 f=5.9993
+label=Compliant conf=0.4024
+flags=success_path</title>
+<rect x="217.0" y="37.0" width="150" height="38" rx="8" fill="#d3f9d8" stroke="#2f9e44" stroke-width="1.6"/>
+<text x="292.0" y="57.0" font-size="11" fill="#212529" text-anchor="middle">- · ROOT</text>
+<text x="292.0" y="70.0" font-size="9" fill="#868e96" text-anchor="middle">d0  g=0 h=4.00  p=0.40</text>
+</g>
+<g><title>state: evidence_3#s0  depth=1
+g=1.0 h=3.1089 f=5.5117
+label=Compliant conf=0.6418
+flags=success_path</title>
+<rect x="217.0" y="133.0" width="150" height="38" rx="8" fill="#d3f9d8" stroke="#2f9e44" stroke-width="1.6"/>
+<circle cx="228.0" cy="148.0" r="3.4" fill="#1c7ed6"/>
+<text x="292.0" y="153.0" font-size="11" fill="#212529" text-anchor="middle">OBL · evidence_3</text>
+<text x="292.0" y="166.0" font-size="9" fill="#868e96" text-anchor="middle">d1  g=1 h=3.11  p=0.64</text>
+</g>
+<g><title>state: evidence_3#s1  depth=2
+g=2.0 h=1.2263 f=3.6889
+label=Compliant conf=0.6808
+flags=success_path</title>
+<rect x="217.0" y="229.0" width="150" height="38" rx="8" fill="#d3f9d8" stroke="#2f9e44" stroke-width="1.6"/>
+<circle cx="228.0" cy="244.0" r="3.4" fill="#e03131"/>
+<text x="292.0" y="249.0" font-size="11" fill="#212529" text-anchor="middle">EXC · evidence_3</text>
+<text x="292.0" y="262.0" font-size="9" fill="#868e96" text-anchor="middle">d2  g=2 h=1.23  p=0.68</text>
+</g>
+<g><title>state: evidence_3#s3  depth=3
+g=3.0 h=0.233 f=3.2616
+label=Compliant conf=0.6589
+flags=success_path</title>
+<rect x="217.0" y="325.0" width="150" height="38" rx="8" fill="#d3f9d8" stroke="#2f9e44" stroke-width="1.6"/>
+<circle cx="228.0" cy="340.0" r="3.4" fill="#e03131"/>
+<text x="292.0" y="345.0" font-size="11" fill="#212529" text-anchor="middle">EXC · evidence_3</text>
+<text x="292.0" y="358.0" font-size="9" fill="#868e96" text-anchor="middle">d3  g=3 h=0.23  p=0.66</text>
+</g>
+<g><title>state: evidence_3#s1  depth=4
+g=4.0 h=0.233 f=4.233
+label=None conf=None
+flags=rule_pruned</title>
+<rect x="49.0" y="421.0" width="150" height="38" rx="8" fill="#ede7f6" stroke="#7048e8" stroke-width="1.6"/>
+<circle cx="60.0" cy="436.0" r="3.4" fill="#e03131"/>
+<text x="124.0" y="441.0" font-size="11" fill="#212529" text-anchor="middle">EXC · evidence_3</text>
+<text x="124.0" y="454.0" font-size="9" fill="#868e96" text-anchor="middle">d4  g=4 h=0.23</text>
+</g>
+<g><title>state: evidence_3#s2  depth=4
+g=4.0 h=0.233 f=4.233
+label=None conf=None
+flags=llm_rejected</title>
+<rect x="217.0" y="421.0" width="150" height="38" rx="8" fill="#fff3bf" stroke="#f08c00" stroke-width="1.6"/>
+<circle cx="228.0" cy="436.0" r="3.4" fill="#f08c00"/>
+<text x="292.0" y="441.0" font-size="11" fill="#212529" text-anchor="middle">COND · evidence_3</text>
+<text x="292.0" y="454.0" font-size="9" fill="#868e96" text-anchor="middle">d4  g=4 h=0.23</text>
+</g>
+<g><title>state: evidence_4#s0  depth=4
+g=4.0 h=0.2331 f=4.228
+label=Compliant conf=0.6839
+flags=success_path</title>
+<rect x="385.0" y="421.0" width="150" height="38" rx="8" fill="#d3f9d8" stroke="#2f9e44" stroke-width="1.6"/>
+<circle cx="396.0" cy="436.0" r="3.4" fill="#1c7ed6"/>
+<text x="460.0" y="441.0" font-size="11" fill="#212529" text-anchor="middle">OBL · evidence_4</text>
+<text x="460.0" y="454.0" font-size="9" fill="#868e96" text-anchor="middle">d4  g=4 h=0.23  p=0.68</text>
+</g>
+<rect x="40" y="12" width="12" height="12" rx="3" fill="#d3f9d8" stroke="#2f9e44"/>
+<text x="57" y="22" font-size="10" fill="#495057">成功路径/目标</text>
+<rect x="137" y="12" width="12" height="12" rx="3" fill="#f1f3f5" stroke="#adb5bd"/>
+<text x="154" y="22" font-size="10" fill="#495057">冗余分支</text>
+<rect x="201" y="12" width="12" height="12" rx="3" fill="#ede7f6" stroke="#7048e8"/>
+<text x="218" y="22" font-size="10" fill="#495057">规则剪枝</text>
+<rect x="265" y="12" width="12" height="12" rx="3" fill="#fff3bf" stroke="#f08c00"/>
+<text x="282" y="22" font-size="10" fill="#495057">LLM 驳回</text>
+<rect x="351" y="12" width="12" height="12" rx="3" fill="#e7f5ff" stroke="#1c7ed6"/>
+<text x="368" y="22" font-size="10" fill="#495057">已扩展</text>
+</svg></div>
+<div class="card"><table>
+<tr><th>#</th><th>clauses</th><th>label</th><th>conf</th><th>g</th><th>h</th><th>f</th>
+<th>llm_reward</th><th>clf_score</th></tr><tr><td>0</td><td>[]</td><td>Compliant</td><td>0.4024</td><td>0.0</td><td>3.9995</td><td>5.9993</td><td>0.0</td><td>0.40241345639988507</td></tr><tr><td>1</td><td>['evidence_3']</td><td>Compliant</td><td>0.6418</td><td>1.0</td><td>3.1089</td><td>5.6634</td><td>0.8085</td><td>0.6417885718405131</td></tr><tr><td>2</td><td>['evidence_3']</td><td>Compliant</td><td>0.6808</td><td>2.0</td><td>1.2263</td><td>3.8394</td><td>1.0</td><td>0.6808135049839354</td></tr><tr><td>3</td><td>['evidence_3']</td><td>Compliant</td><td>0.6589</td><td>3.0</td><td>0.233</td><td>3.3494</td><td>1.0</td><td>0.6589030496778947</td></tr><tr><td>4</td><td>['evidence_3', 'evidence_4']</td><td>Compliant</td><td>0.6839</td><td>4.0</td><td>0.2331</td><td>4.3496</td><td>1.0</td><td>0.683943073474209</td></tr></table></div>
+</body></html>

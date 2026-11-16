@@ -1,0 +1,339 @@
+{
+ "name": "success",
+ "answer": "Compliant",
+ "confidence": 0.6839,
+ "expanded_nodes": 5,
+ "steps": 4,
+ "path": [
+  {
+   "src": "ROOT",
+   "edge_type": "ENTRY",
+   "dst": "evidence_3#s0"
+  },
+  {
+   "src": "evidence_3#s0",
+   "edge_type": "EXCEPTIONS",
+   "dst": "evidence_3#s1"
+  },
+  {
+   "src": "evidence_3#s0",
+   "edge_type": "EXCEPTIONS",
+   "dst": "evidence_3#s3"
+  },
+  {
+   "src": "evidence_3#s0",
+   "edge_type": "CITES",
+   "dst": "evidence_4#s0"
+  }
+ ],
+ "trace": [
+  {
+   "action": null,
+   "depth": 0,
+   "g": 0.0,
+   "h": 3.9995,
+   "f": 5.9993,
+   "label": "Compliant",
+   "conf": 0.4024,
+   "clauses": [],
+   "expanded": true,
+   "clf_score": 0.40241345639988507,
+   "adjust": -0.15,
+   "llm_reward": 0.0,
+   "rule_mask": []
+  },
+  {
+   "action": null,
+   "depth": 1,
+   "g": 1.0,
+   "h": 3.1089,
+   "f": 5.6634,
+   "label": "Compliant",
+   "conf": 0.6418,
+   "clauses": [
+    "evidence_3"
+   ],
+   "expanded": true,
+   "clf_score": 0.6417885718405131,
+   "adjust": -0.1516,
+   "llm_reward": 0.8085,
+   "rule_mask": []
+  },
+  {
+   "action": null,
+   "depth": 2,
+   "g": 2.0,
+   "h": 1.2263,
+   "f": 3.8394,
+   "label": "Compliant",
+   "conf": 0.6808,
+   "clauses": [
+    "evidence_3"
+   ],
+   "expanded": true,
+   "clf_score": 0.6808135049839354,
+   "adjust": -0.1505,
+   "llm_reward": 1.0,
+   "rule_mask": []
+  },
+  {
+   "action": null,
+   "depth": 3,
+   "g": 3.0,
+   "h": 0.233,
+   "f": 3.3494,
+   "label": "Compliant",
+   "conf": 0.6589,
+   "clauses": [
+    "evidence_3"
+   ],
+   "expanded": true,
+   "clf_score": 0.6589030496778947,
+   "adjust": -0.0878,
+   "llm_reward": 1.0,
+   "rule_mask": [
+    "R5"
+   ]
+  },
+  {
+   "action": null,
+   "depth": 4,
+   "g": 4.0,
+   "h": 0.2331,
+   "f": 4.3496,
+   "label": "Compliant",
+   "conf": 0.6839,
+   "clauses": [
+    "evidence_3",
+    "evidence_4"
+   ],
+   "expanded": true,
+   "clf_score": 0.683943073474209,
+   "adjust": -0.1217,
+   "llm_reward": 1.0,
+   "rule_mask": []
+  }
+ ],
+ "meta": {
+  "condition": "H",
+  "sid": "tr00632",
+  "gold": "Compliant",
+  "pred": "Compliant",
+  "steps": 4,
+  "expanded": 5,
+  "confidence": 0.6839,
+  "llm_calls": 24,
+  "n_clauses": 2,
+  "clauses": {
+   "evidence_3": "Any disclosure of any Confidential Information to the Receiving Party made during the Initial Term shall continue to be subject to this Agreement for a period of 2 years thereafter, provided that any trade secret shall b…",
+   "evidence_4": "5.3 Subject to section 5.4, within 10 days of a written request by the Disclosing Party, the Receiving Party shall, unless otherwise precluded by any legal obligation: | (d) retain electronic Confidential Information des…"
+  },
+  "scenario": "During the Initial Term of a confidentiality agreement, Company A (the Receiving Party) received a set of confidential documents from Company B (the Disclosing Party) for a Permitted Purpose. These documents included trade secrets and other sensitive information. After the Initial Term ended, Company B sent a written request to Company A, invoking section 5.3, to return or destroy all Confidential Information within 10 days. Company A complied by returning all original documents and securely deleting electronic copies of the Confidential Information described in subsection 5.3(c). However, Company A retained a summary report it had prepared during the Initial Term, which contained derivative insights based on the Confidential Information. This report was stored in a secure internal database and marked as 'Confidential.' When questioned, Company A cited section 5.4, which explicitly state…",
+  "path": [
+   {
+    "src": "ROOT",
+    "edge_type": "ENTRY",
+    "dst": "evidence_3#s0"
+   },
+   {
+    "src": "evidence_3#s0",
+    "edge_type": "EXCEPTIONS",
+    "dst": "evidence_3#s1"
+   },
+   {
+    "src": "evidence_3#s0",
+    "edge_type": "EXCEPTIONS",
+    "dst": "evidence_3#s3"
+   },
+   {
+    "src": "evidence_3#s0",
+    "edge_type": "CITES",
+    "dst": "evidence_4#s0"
+   }
+  ]
+ },
+ "n_nodes_raw": 13,
+ "tree": [
+  {
+   "tid": 0,
+   "parent": null,
+   "children": [
+    1
+   ],
+   "depth": 0,
+   "node_id": null,
+   "clause": null,
+   "role": null,
+   "action": null,
+   "g": 0.0,
+   "h": 3.9995,
+   "f": 5.9993,
+   "visits": 0,
+   "value": 0.0,
+   "conf": 0.4024,
+   "label": "Compliant",
+   "status": "goal",
+   "flags": [
+    "success_path"
+   ]
+  },
+  {
+   "tid": 1,
+   "parent": 0,
+   "children": [
+    2
+   ],
+   "depth": 1,
+   "node_id": "evidence_3#s0",
+   "clause": "evidence_3",
+   "role": "OBL",
+   "action": {
+    "src": "ROOT",
+    "edge_type": "ENTRY",
+    "dst": "evidence_3#s0"
+   },
+   "g": 1.0,
+   "h": 3.1089,
+   "f": 5.5117,
+   "visits": 0,
+   "value": 0.0,
+   "conf": 0.6418,
+   "label": "Compliant",
+   "status": "goal",
+   "flags": [
+    "success_path"
+   ]
+  },
+  {
+   "tid": 2,
+   "parent": 1,
+   "children": [
+    3
+   ],
+   "depth": 2,
+   "node_id": "evidence_3#s1",
+   "clause": "evidence_3",
+   "role": "EXC",
+   "action": {
+    "src": "evidence_3#s0",
+    "edge_type": "EXCEPTIONS",
+    "dst": "evidence_3#s1"
+   },
+   "g": 2.0,
+   "h": 1.2263,
+   "f": 3.6889,
+   "visits": 0,
+   "value": 0.0,
+   "conf": 0.6808,
+   "label": "Compliant",
+   "status": "goal",
+   "flags": [
+    "success_path"
+   ]
+  },
+  {
+   "tid": 3,
+   "parent": 2,
+   "children": [
+    4,
+    5,
+    6
+   ],
+   "depth": 3,
+   "node_id": "evidence_3#s3",
+   "clause": "evidence_3",
+   "role": "EXC",
+   "action": {
+    "src": "evidence_3#s0",
+    "edge_type": "EXCEPTIONS",
+    "dst": "evidence_3#s3"
+   },
+   "g": 3.0,
+   "h": 0.233,
+   "f": 3.2616,
+   "visits": 0,
+   "value": 0.0,
+   "conf": 0.6589,
+   "label": "Compliant",
+   "status": "goal",
+   "flags": [
+    "success_path"
+   ]
+  },
+  {
+   "tid": 4,
+   "parent": 3,
+   "children": [],
+   "depth": 4,
+   "node_id": "evidence_3#s1",
+   "clause": "evidence_3",
+   "role": "EXC",
+   "action": {
+    "src": "evidence_3#s0",
+    "edge_type": "EXCEPTIONS",
+    "dst": "evidence_3#s1"
+   },
+   "g": 4.0,
+   "h": 0.233,
+   "f": 4.233,
+   "visits": 0,
+   "value": 0.0,
+   "conf": null,
+   "label": null,
+   "status": "pruned",
+   "flags": [
+    "rule_pruned"
+   ]
+  },
+  {
+   "tid": 5,
+   "parent": 3,
+   "children": [],
+   "depth": 4,
+   "node_id": "evidence_3#s2",
+   "clause": "evidence_3",
+   "role": "COND",
+   "action": {
+    "src": "evidence_3#s0",
+    "edge_type": "DEPENDS_ON",
+    "dst": "evidence_3#s2"
+   },
+   "g": 4.0,
+   "h": 0.233,
+   "f": 4.233,
+   "visits": 0,
+   "value": 0.0,
+   "conf": null,
+   "label": null,
+   "status": "pruned",
+   "flags": [
+    "llm_rejected"
+   ]
+  },
+  {
+   "tid": 6,
+   "parent": 3,
+   "children": [],
+   "depth": 4,
+   "node_id": "evidence_4#s0",
+   "clause": "evidence_4",
+   "role": "OBL",
+   "action": {
+    "src": "evidence_3#s0",
+    "edge_type": "CITES",
+    "dst": "evidence_4#s0"
+   },
+   "g": 4.0,
+   "h": 0.2331,
+   "f": 4.228,
+   "visits": 0,
+   "value": 0.0,
+   "conf": 0.6839,
+   "label": "Compliant",
+   "status": "goal",
+   "flags": [
+    "success_path"
+   ]
+  }
+ ]
+}

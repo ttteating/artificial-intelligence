@@ -11,14 +11,27 @@ R2 深链截断：DEPENDS_ON 连续链 > max_ref_chain 跳 -> 剪（法律引用
 R3 冲突边双证据：CONFLICTS 边要求 src 与 dst 都已在状态里 -> 否则延后
 R4 例外未解不下结论：needs_exc 且例外未解时，禁止把动作花在"再去看义务条款"上
    （strict 开关；关掉后只降权不剪枝 —— 这正是"规则过约束"的对照组）
+R5 环检测：同一 (src, edge_type, dst) 边在路径里已走过 -> 剪（回访不同边仍允许，
+   因为"例外边到达"与"补充边到达"法律含义不同，真正去重交给 State.key）
+R6 失效条款排除：目标节点文本命中"已失效/被取代/不再有效"线索，且该边不是例外/
+   冲突边 -> 剪（失效条款不应再作为推理依据；例外/冲突本身要看失效条款，故放行）
 """
 
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass, field
 
-from data.clause_graph import E_CONFLICTS, E_DEPENDS_ON, ROLE_EXC
+from data.clause_graph import E_CONFLICTS, E_DEPENDS_ON, E_EXCEPTIONS, ROLE_EXC
 from state.core import Action, State
+
+# R6 使用的"失效条款"文本线索（保守：只认法律上明确失效/被取代的表述）
+DEAD_CLAUSE_CUES = re.compile(
+    r"\b(superseded|supersedes|no longer in (?:effect|force)|"
+    r"shall have no further force|is replaced by|in lieu of|"
+    r"shall be deemed (?:deleted|void)|terminated and of no effect)\b",
+    re.I,
+)
 
 
 @dataclass
@@ -26,7 +39,9 @@ class RuleEngine:
     sim_floor: float = 0.12
     max_ref_chain: int = 2
     strict_exception: bool = True
-    enabled: tuple[str, ...] = ("R1", "R2", "R3", "R4")
+    cycle_guard: bool = True
+    dead_clause_guard: bool = True
+    enabled: tuple[str, ...] = ("R1", "R2", "R3", "R4", "R5", "R6")
     # 计数器（每场景新建一个引擎，所以直接累加即可）
     pruned: int = 0
     hits: dict = field(default_factory=dict)
@@ -96,6 +111,18 @@ class RuleEngine:
                     # 只允许朝着"能解开例外"的方向走
                     if dst_sim <= problem.max_sim * 0.95:
                         out.append("R4")
+
+        # R5 环检测：同一条边已经走过，再走一次就是环
+        if "R5" in self.enabled and self.cycle_guard:
+            if (a.src, a.edge_type, a.dst) in state.used_edges:
+                out.append("R5")
+
+        # R6 失效条款排除：失效/被取代的条款不再作为推理依据
+        if "R6" in self.enabled and self.dead_clause_guard:
+            if a.edge_type not in (E_EXCEPTIONS, E_CONFLICTS):
+                dst_text = getattr(problem.graph.node(a.dst), "text", "") or ""
+                if DEAD_CLAUSE_CUES.search(dst_text):
+                    out.append("R6")
         return tuple(out)
 
     # ------------------------------------------------------------ 风险分
@@ -117,6 +144,11 @@ class RuleEngine:
             r += 0.15
         if problem.needs_exc and not problem.exception_ok(state):
             r += 0.1
+        if (a.src, a.edge_type, a.dst) in state.used_edges:      # R5 环
+            r += 0.2
+        dst_text = getattr(problem.graph.node(a.dst), "text", "") or ""
+        if DEAD_CLAUSE_CUES.search(dst_text) and a.edge_type not in (E_EXCEPTIONS, E_CONFLICTS):
+            r += 0.2                                                  # R6 失效条款
         return min(1.0, r)
 
     @staticmethod

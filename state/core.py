@@ -98,6 +98,7 @@ class SearchResult:
     llm_calls: int = 0
     pruned_by_rule: int = 0
     llm_rejected: int = 0
+    llm_suspicious: int = 0
     margins: dict = field(default_factory=dict)
 
     @property

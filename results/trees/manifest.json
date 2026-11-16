@@ -1,0 +1,23 @@
+{
+  "success": {
+    "sid": "tr00632",
+    "condition": "H",
+    "json": "D:\\人工智能\\work\\artificial-intelligence\\results\\trees\\success.json",
+    "html": "D:\\人工智能\\work\\artificial-intelligence\\results\\trees\\success.html",
+    "nodes": 7
+  },
+  "astar_misled": {
+    "sid": "tr00715",
+    "condition": "A1",
+    "json": "D:\\人工智能\\work\\artificial-intelligence\\results\\trees\\astar_misled.json",
+    "html": "D:\\人工智能\\work\\artificial-intelligence\\results\\trees\\astar_misled.html",
+    "nodes": 16
+  },
+  "llm_misjudge": {
+    "sid": "tr01689",
+    "condition": "H",
+    "json": "D:\\人工智能\\work\\artificial-intelligence\\results\\trees\\llm_misjudge.json",
+    "html": "D:\\人工智能\\work\\artificial-intelligence\\results\\trees\\llm_misjudge.html",
+    "nodes": 19
+  }
+}

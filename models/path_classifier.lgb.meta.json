@@ -1,6 +1,5 @@
 {
-  "model_file": "path_classifier.lgb",
-  "train_data_hash": "",
+  "train_data_hash": "ce637cb8c7bd67ea9924649300aa2cd60bc5d24f6c23ccac75d685abc8f5eff0",
   "feature_names": [
     "depth",
     "num_clauses",
@@ -21,11 +20,31 @@
     "has_supersedes",
     "label_hypothesis_encoded"
   ],
-  "n_train": null,
-  "pos_ratio": null,
-  "best_iteration": 1,
-  "best_dev_auc": 0.9431329690346084,
-  "seed": null,
-  "trained_at": null,
-  "lightgbm_version": "4.7.0"
+  "n_train": 4993,
+  "pos_ratio": 0.18726216703384738,
+  "best_iteration": 13,
+  "best_dev_auc": 0.6878486260977055,
+  "seed": 20260101,
+  "trained_at": "2026-11-16T09:32:08.805750+00:00",
+  "lightgbm_version": "4.7.0",
+  "model_file": "path_classifier.lgb",
+  "condition": "B1",
+  "n_train_scenarios": 600,
+  "n_dev_scenarios": 200,
+  "n_train_nodes": 4993,
+  "n_dev_nodes": 1629,
+  "dev_auc": 0.6878486260977055,
+  "precision_at_10": 1.0,
+  "precision_at_20": 0.95,
+  "synthetic": false,
+  "top_features": {
+    "llm_reward_avg": 7029.00359916687,
+    "sem_sim": 4781.379508972168,
+    "rule_risk": 3248.2268028259277,
+    "dst_out_degree": 1801.4075012207031,
+    "depth": 1661.375415802002,
+    "num_used_edges": 421.3719024658203,
+    "num_clauses": 322.641902923584,
+    "dst_in_degree": 240.22579956054688
+  }
 }

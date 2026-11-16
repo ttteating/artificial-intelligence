@@ -1,0 +1,14 @@
+{
+  "heldout": {
+    "n_paths": 2375,
+    "n_scen": 100,
+    "accuracy": 0.5941,
+    "macro_f1": 0.5924
+  },
+  "dev": {
+    "n_paths": 14372,
+    "n_scen": 600,
+    "accuracy": 0.5373,
+    "macro_f1": 0.5345
+  }
+}

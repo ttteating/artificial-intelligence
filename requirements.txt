@@ -20,7 +20,8 @@ lightgbm>=4.0             # H/M1 的路径价值分类器（hybrid/path_classifi
 # 自实现（4 维实数编码 + SBX + 高斯变异），无需 deap
 
 # ---------- LLM（可选，仅 --llm real 需要） ----------
-# openai>=1.0
+openai>=1.30                # llm/adapter.py 的真实通路；无 key 时自动回退 mock
+# 冒烟：python -m tools.llm_smoke
 
 # ---------- 可视化 ----------
 matplotlib>=3.7             # 曲线与柱状图

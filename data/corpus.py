@@ -11,10 +11,10 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Iterable
 
-from data.ace_loader import load_raw
+from data.ace_loader import load_raw, normalize_split
 from data.clause_graph import ScenarioGraph
-from data.clause_graph_builder import (GRAPH_VERSION, build_graph, precompute_clause_sim,
-                                      precompute_facet_sim)
+from data.facet_graph import (GRAPH_VERSION, build_graph, precompute_clause_sim,
+                              precompute_facet_sim)
 from data.features import build_scorer
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -51,7 +51,10 @@ class Corpus:
         import json
 
         self.cache_dir.mkdir(parents=True, exist_ok=True)
-        self.split = json.loads(self.split_path.read_text(encoding="utf-8"))
+        # split.json 由 B 侧 ace_loader.make_split 产出，键面是
+        # metadata / splits / distributions；这里归一成 Corpus 用的
+        # sids / train_rest / dev / heldout（见 ace_loader.normalize_split）。
+        self.split = normalize_split(json.loads(self.split_path.read_text(encoding="utf-8")))
 
         # Use load_raw with split argument to get data consistently with split.json
         train_indices = load_raw(split="train", raw_dir=self.raw_dir)

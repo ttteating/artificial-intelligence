@@ -1,0 +1,45 @@
+{
+ "split": "dev",
+ "n_scenarios": 600,
+ "avg_nodes": 3.61,
+ "avg_edges": 4.1,
+ "avg_entry_nodes": 1.54,
+ "isolated_ratio": 0.6758,
+ "edges_total": 2460,
+ "edge_type_counts": {
+  "DEFINES": 16,
+  "COMPLEMENTS": 440,
+  "EXCEPTIONS": 898,
+  "DEPENDS_ON": 229,
+  "CONFLICTS": 318,
+  "SEQUENCE": 124,
+  "CITES": 435
+ },
+ "edge_type_share": {
+  "DEFINES": 0.0065,
+  "COMPLEMENTS": 0.1789,
+  "EXCEPTIONS": 0.365,
+  "DEPENDS_ON": 0.0931,
+  "CONFLICTS": 0.1293,
+  "SEQUENCE": 0.0504,
+  "CITES": 0.1768
+ },
+ "scenarios_with_type": {
+  "DEFINES": 14,
+  "COMPLEMENTS": 181,
+  "EXCEPTIONS": 315,
+  "DEPENDS_ON": 151,
+  "CONFLICTS": 80,
+  "SEQUENCE": 59,
+  "CITES": 153
+ },
+ "type_coverage": {
+  "DEFINES": 0.0233,
+  "COMPLEMENTS": 0.3017,
+  "EXCEPTIONS": 0.525,
+  "DEPENDS_ON": 0.2517,
+  "CONFLICTS": 0.1333,
+  "SEQUENCE": 0.0983,
+  "CITES": 0.255
+ }
+}

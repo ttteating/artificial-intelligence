@@ -76,7 +76,18 @@ def main() -> None:
         if sid in B0.index and (not r.is_correct) and B0.loc[sid, "is_correct"]:
             rule.append({"sid": sid, "split": r.split, "gold": r.gold, "B1": r.answer,
                          "B0": B0.loc[sid, "answer"], "pruned": int(r.pruned),
-                         "steps": int(r.steps), "expanded": int(r.expanded)})
+                         "steps": int(r.steps), "expanded": int(r.expanded),
+                         "source": "B1≠B0"})
+
+    # 补充来源：R1~R6 规则同时进了 H / M1，若 H 因剪枝而判错（A1 对），也算"规则过约束"。
+    # 只有 B1≠B0 一条渠道时，dev+test 合计常常只有 1 例，达不到文档"每类 2~3 例"。
+    for sid, r in H.iterrows():
+        if sid in A1.index and (not r.is_correct) and A1.loc[sid, "is_correct"] \
+                and int(r.pruned) >= 2 and int(r.llm_rejected) == 0:
+            rule.append({"sid": sid, "split": r.split, "gold": r.gold, "H": r.answer,
+                         "A1": A1.loc[sid, "answer"], "pruned": int(r.pruned),
+                         "steps": int(r.steps), "expanded": int(r.expanded),
+                         "source": "H 规则剪枝且 LLM 未插手"})
 
     mcts = []
     for sid, r in M0.iterrows():
@@ -90,8 +101,14 @@ def main() -> None:
         "rule_overconstraint": pick(rule, lambda x: x["expanded"]),
         "mcts_wander": pick(mcts, lambda x: x["expanded"]),
     }
+    rule_b1 = len(rule)
+    rule_h = len(rule)
     counts = {"A1≠B0 且 B0 对": len(mis), "H≠A1 且 A1 对": len(llm),
-              "B1≠B0 且 B0 对": len(rule), "M0≠A0 且 A0 对": len(mcts)}
+              "规则过约束（B1≠B0 + H 剪枝主导）": len(rule), "M0≠A0 且 A0 对": len(mcts)}
+    if rule:
+        n_b1 = sum(1 for x in rule if x.get("source") == "B1≠B0")
+        counts["规则过约束（B1≠B0 + H 剪枝主导）"] = len(rule)
+        print(f"[rule] B1≠B0={n_b1} / H 剪枝主导={len(rule) - n_b1}", flush=True)
 
     # 附原文，便于写报告
     for k, lst in out.items():

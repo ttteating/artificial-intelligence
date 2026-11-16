@@ -1,0 +1,258 @@
+{
+  "B0": {
+    "n": 600,
+    "macro_f1": 0.6409,
+    "accuracy": 0.6483,
+    "avg_expanded": 5.548,
+    "avg_steps": 1.768,
+    "redundant_ratio": 0.5011,
+    "avg_llm_calls": 0.0,
+    "goal_rate": 0.5617,
+    "avg_pruned": 0.0,
+    "avg_llm_rejected": 0.0,
+    "recall_Compliant": 0.645,
+    "recall_Non-Compliant": 0.415,
+    "recall_Not-Applicable": 0.885,
+    "confusion": {
+      "Compliant": {
+        "Compliant": 129,
+        "Non-Compliant": 57,
+        "Not-Applicable": 14
+      },
+      "Non-Compliant": {
+        "Compliant": 96,
+        "Non-Compliant": 83,
+        "Not-Applicable": 21
+      },
+      "Not-Applicable": {
+        "Compliant": 9,
+        "Non-Compliant": 14,
+        "Not-Applicable": 177
+      }
+    }
+  },
+  "B1": {
+    "n": 600,
+    "macro_f1": 0.6439,
+    "accuracy": 0.65,
+    "avg_expanded": 5.093,
+    "avg_steps": 1.81,
+    "redundant_ratio": 0.4483,
+    "avg_llm_calls": 0.0,
+    "goal_rate": 0.57,
+    "avg_pruned": 2.325,
+    "avg_llm_rejected": 0.0,
+    "recall_Compliant": 0.64,
+    "recall_Non-Compliant": 0.425,
+    "recall_Not-Applicable": 0.885,
+    "confusion": {
+      "Compliant": {
+        "Compliant": 128,
+        "Non-Compliant": 58,
+        "Not-Applicable": 14
+      },
+      "Non-Compliant": {
+        "Compliant": 97,
+        "Non-Compliant": 85,
+        "Not-Applicable": 18
+      },
+      "Not-Applicable": {
+        "Compliant": 9,
+        "Non-Compliant": 14,
+        "Not-Applicable": 177
+      }
+    }
+  },
+  "A0": {
+    "n": 600,
+    "macro_f1": 0.6471,
+    "accuracy": 0.6533,
+    "avg_expanded": 5.227,
+    "avg_steps": 1.84,
+    "redundant_ratio": 0.4566,
+    "avg_llm_calls": 0.0,
+    "goal_rate": 0.5717,
+    "avg_pruned": 0.0,
+    "avg_llm_rejected": 0.0,
+    "recall_Compliant": 0.655,
+    "recall_Non-Compliant": 0.42,
+    "recall_Not-Applicable": 0.885,
+    "confusion": {
+      "Compliant": {
+        "Compliant": 131,
+        "Non-Compliant": 58,
+        "Not-Applicable": 11
+      },
+      "Non-Compliant": {
+        "Compliant": 97,
+        "Non-Compliant": 84,
+        "Not-Applicable": 19
+      },
+      "Not-Applicable": {
+        "Compliant": 9,
+        "Non-Compliant": 14,
+        "Not-Applicable": 177
+      }
+    }
+  },
+  "A1": {
+    "n": 600,
+    "macro_f1": 0.6444,
+    "accuracy": 0.65,
+    "avg_expanded": 5.103,
+    "avg_steps": 1.875,
+    "redundant_ratio": 0.4366,
+    "avg_llm_calls": 0.0,
+    "goal_rate": 0.5767,
+    "avg_pruned": 0.0,
+    "avg_llm_rejected": 0.0,
+    "recall_Compliant": 0.64,
+    "recall_Non-Compliant": 0.425,
+    "recall_Not-Applicable": 0.885,
+    "confusion": {
+      "Compliant": {
+        "Compliant": 128,
+        "Non-Compliant": 60,
+        "Not-Applicable": 12
+      },
+      "Non-Compliant": {
+        "Compliant": 97,
+        "Non-Compliant": 85,
+        "Not-Applicable": 18
+      },
+      "Not-Applicable": {
+        "Compliant": 9,
+        "Non-Compliant": 14,
+        "Not-Applicable": 177
+      }
+    }
+  },
+  "A2": {
+    "n": 600,
+    "macro_f1": 0.6478,
+    "accuracy": 0.6517,
+    "avg_expanded": 4.74,
+    "avg_steps": 1.865,
+    "redundant_ratio": 0.3956,
+    "avg_llm_calls": 20.215,
+    "goal_rate": 0.5767,
+    "avg_pruned": 0.0,
+    "avg_llm_rejected": 2.308,
+    "recall_Compliant": 0.645,
+    "recall_Non-Compliant": 0.43,
+    "recall_Not-Applicable": 0.88,
+    "confusion": {
+      "Compliant": {
+        "Compliant": 129,
+        "Non-Compliant": 60,
+        "Not-Applicable": 11
+      },
+      "Non-Compliant": {
+        "Compliant": 100,
+        "Non-Compliant": 86,
+        "Not-Applicable": 14
+      },
+      "Not-Applicable": {
+        "Compliant": 10,
+        "Non-Compliant": 14,
+        "Not-Applicable": 176
+      }
+    }
+  },
+  "M0": {
+    "n": 600,
+    "macro_f1": 0.6339,
+    "accuracy": 0.6433,
+    "avg_expanded": 9.343,
+    "avg_steps": 1.858,
+    "redundant_ratio": 0.6941,
+    "avg_llm_calls": 0.0,
+    "goal_rate": 0.5333,
+    "avg_pruned": 0.0,
+    "avg_llm_rejected": 0.0,
+    "recall_Compliant": 0.645,
+    "recall_Non-Compliant": 0.4,
+    "recall_Not-Applicable": 0.885,
+    "confusion": {
+      "Compliant": {
+        "Compliant": 129,
+        "Non-Compliant": 55,
+        "Not-Applicable": 16
+      },
+      "Non-Compliant": {
+        "Compliant": 96,
+        "Non-Compliant": 80,
+        "Not-Applicable": 24
+      },
+      "Not-Applicable": {
+        "Compliant": 9,
+        "Non-Compliant": 14,
+        "Not-Applicable": 177
+      }
+    }
+  },
+  "M1": {
+    "n": 600,
+    "macro_f1": 0.6473,
+    "accuracy": 0.6517,
+    "avg_expanded": 8.002,
+    "avg_steps": 1.953,
+    "redundant_ratio": 0.6309,
+    "avg_llm_calls": 52.323,
+    "goal_rate": 0.5467,
+    "avg_pruned": 10.443,
+    "avg_llm_rejected": 9.392,
+    "recall_Compliant": 0.655,
+    "recall_Non-Compliant": 0.425,
+    "recall_Not-Applicable": 0.875,
+    "confusion": {
+      "Compliant": {
+        "Compliant": 131,
+        "Non-Compliant": 58,
+        "Not-Applicable": 11
+      },
+      "Non-Compliant": {
+        "Compliant": 100,
+        "Non-Compliant": 85,
+        "Not-Applicable": 15
+      },
+      "Not-Applicable": {
+        "Compliant": 10,
+        "Non-Compliant": 15,
+        "Not-Applicable": 175
+      }
+    }
+  },
+  "H": {
+    "n": 600,
+    "macro_f1": 0.6461,
+    "accuracy": 0.65,
+    "avg_expanded": 4.53,
+    "avg_steps": 1.878,
+    "redundant_ratio": 0.3646,
+    "avg_llm_calls": 17.473,
+    "goal_rate": 0.57,
+    "avg_pruned": 2.018,
+    "avg_llm_rejected": 1.962,
+    "recall_Compliant": 0.645,
+    "recall_Non-Compliant": 0.43,
+    "recall_Not-Applicable": 0.875,
+    "confusion": {
+      "Compliant": {
+        "Compliant": 129,
+        "Non-Compliant": 60,
+        "Not-Applicable": 11
+      },
+      "Non-Compliant": {
+        "Compliant": 99,
+        "Non-Compliant": 86,
+        "Not-Applicable": 15
+      },
+      "Not-Applicable": {
+        "Compliant": 10,
+        "Non-Compliant": 15,
+        "Not-Applicable": 175
+      }
+    }
+  }
+}

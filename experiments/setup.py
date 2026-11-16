@@ -6,6 +6,7 @@
 from __future__ import annotations
 
 import json
+import os
 from pathlib import Path
 
 from data.corpus import Corpus
@@ -80,13 +81,40 @@ def prepare(use_llm: str | None = None, backend: str | None = None,
         role_prior = load_role_prior(rp_path)
 
     # ---- 路径价值分类器（只在 H / M1 需要）
-    clf_path = MODELS / "path_classifier.pkl"
-    from hybrid.path_classifier import PathValueClassifier, train_path_classifier
+    # 优先级：B 线 LightGBM（`models/path_classifier.lgb`，须由
+    # `experiments.train_lgb_classifier` 用真实轨迹训练、meta 标 synthetic=false）
+    # > A 线逻辑回归兜底（`results/models/path_classifier.pkl`）。
+    clf = None
+    lgb_path = ROOT / "models" / "path_classifier.lgb"
+    lgb_meta = ROOT / "models" / "path_classifier.lgb.meta.json"
+    use_lgb = os.environ.get("CLF_MODEL", "auto")
+    if lgb_path.exists() and use_lgb != "logreg":
+        meta = {}
+        if lgb_meta.exists():
+            try:
+                meta = json.loads(lgb_meta.read_text(encoding="utf-8"))
+            except Exception:
+                meta = {}
+        if meta.get("synthetic") is False:
+            try:
+                from hybrid.path_value_lgb import LGBPathValue
 
-    if retrain or not clf_path.exists():
-        clf = train_path_classifier(corpus, head, clf_path, max_depth=max_depth)
-    else:
-        clf = PathValueClassifier.load(clf_path)
+                clf = LGBPathValue(lgb_path, corpus)
+                if not quiet:
+                    print(f"[setup] 路径价值分类器 = LightGBM "
+                          f"(真实轨迹, dev AUC={meta.get('dev_auc', float('nan')):.4f})")
+            except Exception as exc:      # noqa: BLE001 - 缺 lightgbm / 模型损坏都回退
+                print(f"[setup] LightGBM 分类器不可用（{exc}），回退逻辑回归")
+                clf = None
+
+    if clf is None:
+        clf_path = MODELS / "path_classifier.pkl"
+        from hybrid.path_value import PathValueClassifier, train_path_classifier
+
+        if retrain or not clf_path.exists():
+            clf = train_path_classifier(corpus, head, clf_path, max_depth=max_depth)
+        else:
+            clf = PathValueClassifier.load(clf_path)
 
     # ---- GA 参数
     ga_path = MODELS / "ga_params.json"

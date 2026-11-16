@@ -123,6 +123,12 @@ def bucket_by(rows: list[Row], key: str) -> dict[str, list[Row]]:
         if key == "hops":
             d = r.oracle_depth
             b = "1-2 跳" if d <= 2 else ("3 跳" if d == 3 else "4+ 跳")
+        elif key == "clauses":
+            b = f"{min(r.n_clauses, 3)} 条款" if r.n_clauses < 3 else "3+ 条款"
+        else:
+            b = str(getattr(r, key))
+        out[b].append(r)
+    return dict(out)
 
 
 # ---------------------------------------------------------------- 单样本 / 整体指标

@@ -1,0 +1,209 @@
+{
+  "heuristic_misled": [
+    {
+      "sid": "tr00117",
+      "split": "dev",
+      "gold": "Compliant",
+      "A1": "Non-Compliant",
+      "B0": "Compliant",
+      "A0": "Compliant",
+      "A1_expanded": 16,
+      "extra_expanded": 0,
+      "n_clauses": 4,
+      "oracle_hops": 4,
+      "scenario": "Supplier, under a distribution agreement governed by the laws of New York, is obligated to adhere to several clauses involving the ambiguous phrase 'in connection with'. Supplier appoints Reseller to market and sell its products. In compliance with clause evidence_6, Supplier sends an email confirming Reseller’s appointment and granting rights to resell, market, and promote products in the Territory. However, Supplier uses informal phrasing in the email, stating, 'You can go ahead and start promoting our products however you see fit, in connection with what we discussed.' While technically com",
+      "clauses": {
+        "evidence_3": "This Agreement shall be governed by the laws of the State of New York and all disputes and controversies arising out of or in connection with the Agreement shall be brought exclusively before the competent courts in New York County, New York; provided however that judgment shall be enforceable in an",
+        "evidence_6": "In connection with the foregoing appointment, Supplier hereby grants Reseller a non-transferable, revocable, limited right to resell, market, promote, stimulate interest in, and solicit Orders by Customers and/or End Users in the Territory for the Products and to provide services in connection with ",
+        "evidence_7": "In connection with the foregoing appointment, Supplier hereby grants Reseller a non-transferable, revocable, limited right to resell, market, promote, stimulate interest in, and solicit Orders by Customers and/or End Users in the Territory for the Products and to provide services in connection with ",
+        "evidence_9": "ANY SUBSTITUTE GOODS OR SERVICES. THE AGGREGATE LIABILITY OF SUPPLIER UNDER, OR IN CONNECTION WITH, THIS AGREEMENT SHALL BE EQUAL TO THE LESSER OF: (i) ***; AND (ii) ***. | TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL SUPPLIER BE LIABLE UNDER, OR OTHERWISE IN CONNECTION WITH,"
+      }
+    },
+    {
+      "sid": "tr00715",
+      "split": "dev",
+      "gold": "Compliant",
+      "A1": "Not-Applicable",
+      "B0": "Not-Applicable",
+      "A0": "Compliant",
+      "A1_expanded": 16,
+      "extra_expanded": 0,
+      "n_clauses": 3,
+      "oracle_hops": 2,
+      "scenario": "The franchisee ('you'), pursuant to the transfer clause, intended to sell their franchise to a Proposed New Owner. To comply with the obligation requiring payment of all outstanding amounts owed to the franchisor before the transfer (Clause 1(b)), the franchisee issued a payment via wire transfer within the stipulated timeframe but used an unconventional payment reference code that did not specify the franchise location or agreement number. This caused temporary confusion in the franchisor's accounting department, leading to a delay in associating the payment with the correct account. Addition",
+      "clauses": {
+        "evidence_7": "If you propose to Transfer this Agreement, the Franchise or its assets, or any Interest, or if any of your Principal Owners proposes to Transfer a controlling Interest in you or make a Transfer that is one of a series of Transfers which taken together would constitute the Transfer of a controlling I",
+        "evidence_9": "You agree not to use any Mark as part of any corporate or trade name or with any prefix, suffix, or other modifying words, terms, designs, or symbols (other than logos and additional trade and service marks licensed to you under this Agreement), or in any modified form. | As part of the Computer Sys",
+        "evidence_14": "You must provide us with copies of policies evidencing the existence of such insurance concurrently with execution of this Agreement and prior to each subsequent renewal date of each insurance policy, along with certificates evidencing such insurance. | Before you open the Franchise and during any T"
+      }
+    },
+    {
+      "sid": "tr00736",
+      "split": "dev",
+      "gold": "Compliant",
+      "A1": "Non-Compliant",
+      "B0": "Compliant",
+      "A0": "Compliant",
+      "A1_expanded": 16,
+      "extra_expanded": 0,
+      "n_clauses": 4,
+      "oracle_hops": 3,
+      "scenario": "ETI, on behalf of Entrust, was obligated under the Reseller Agreement to ensure that NTL received terms for the Enterprise License that were 'no less favorable' than those offered to other licensees receiving 'substantially similar rights,' taking into account the relative size and benefits to Entrust. Following the execution of the agreement, ETI provided NTL with a draft license agreement nearly identical to Exhibit B, except for a minor amendment: a clause limiting the number of concurrent users to 1,000 until a subsequent financial milestone was achieved. ETI justified this limitation by c",
+      "clauses": {
+        "evidence_2": "During the life of the Reseller Agreement, ----------------------- it is the intention of ETI that the terms of the Reseller Agreement shall be no less favourable to Nortel than the terms in effect with any of Entrust's resellers of Entrust Products at the time the Reseller Agreement is executed. | ",
+        "evidence_4": "following rights: (a) to make, use, lease, sell or otherwise dispose of, maintain and repair, Licensed Products, to license the use of Licensed Products made by or for Grantee, to practice any process involved in the manufacture or use of Licensed Products, and to provide Licensed Services; (b) to h",
+        "evidence_6": "Any rights or license granted under this Article VI to a ----------------- corporation or other legal entity which becomes a Subsidiary of a Party at a date later than the Effective Date shall become effective as of the date upon which such corporation or other legal entity becomes a Subsidiary of s",
+        "evidence_7": "ETI, on behalf of Entrust, grants to NTL and its ------------ Affiliates (as defined in the Enterprise License) a non-exclusive, fully paid- up, worldwide, perpetual license to use an unlimited number of copies of the Entrust Products subject to the terms and conditions of an agreement to be conclud"
+      }
+    }
+  ],
+  "llm_hallucination": [
+    {
+      "sid": "te00262",
+      "split": "test",
+      "gold": "Compliant",
+      "H": "Non-Compliant",
+      "A1": "Compliant",
+      "llm_calls": 223,
+      "llm_rejected": 43,
+      "H_expanded": 16,
+      "scenario": "PB entered into a definitive agreement for a Change of Control and exercised its right to make a Change of Control Buy-Out Payment to SFJ within the 120-day timeframe stipulated in evidence_4. However, instead of providing formal written notice via a traditional letter or email, PB communicated the Change of Control Buy-Out Notice through an unconventional method—an annotated shared document in a secure collaboration platform used by both parties. This document included detailed calculations of the Buy-Out Payment, the closing date, and other required elements outlined in the agreement. Despit",
+      "clauses": {
+        "evidence_2": "Notwithstanding any of the foregoing, without the consent of PB, which consent may be withheld in PB's sole discretion, SFJ shall not sell, assign, sublicense or otherwise transfer this Agreement to an entity whose primary business is the development or commercialization of pharmaceutical or biotech",
+        "evidence_4": "Within one hundred and twenty (120) days following the closing of a Change of Control, PB or its successor shall have the right to make a one-time payment (the \"Change of Control Buy-Out Payment\") in lieu of all (but not less than all) remaining Approval Payments for the applicable country(ies) in w",
+        "evidence_5": "PB shall not sell, transfer or assign, directly or indirectly, in whole or in part, any rights to receive payments of royalties or license fees with respect to the Product or the PB Intellectual Property (including any Accounts with respect to such royalties or license fees), other than to a wholly ",
+        "evidence_8": "mutually agreeing to terminate the Phase 3 Trial, in either case ((x) or (y)), due to a Serious Safety Issue that was previously known, demonstrated or identified by PB as being material as of the Effective Date and the material data showing, demonstrating, or identifying such Serious Safety Issue w"
+      }
+    },
+    {
+      "sid": "te00737",
+      "split": "test",
+      "gold": "Non-Compliant",
+      "H": "Compliant",
+      "A1": "Non-Compliant",
+      "llm_calls": 153,
+      "llm_rejected": 0,
+      "H_expanded": 16,
+      "scenario": "NCM operates a service that licenses its Marks and Derived Works to Network Affiliate under specific contractual terms. During the Term of the Agreement, Network Affiliate proposes using an NCM Mark in an advertising campaign targeting a niche demographic. Instead of formally requesting approval via email or other official channels, Network Affiliate’s marketing director inserts the request into a shared project management platform, stating, 'To the extent this campaign aligns with the NCM Quality Standards, we propose using the NCM Marks. Approval can be inferred if this project plan is marke",
+      "clauses": {
+        "evidence_10": "Subject to the terms and conditions of this Agreement and such other standards, trademark usage guidelines and specifications as are prescribed by NCM during the term of this Agreement (the \"NCM Quality Standards\"), NCM hereby grants to Network Affiliate, and Network Affiliate hereby accepts, a non-",
+        "evidence_11": "Subject to the terms and conditions of this Agreement and such other standards, trademark usage guidelines and specifications as are prescribed by NCM during the term of this Agreement (the \"NCM Quality Standards\"), NCM hereby grants to Network Affiliate, and Network Affiliate hereby accepts, a non-",
+        "evidence_16": "Neither party will at any time, except to the extent necessary to assert or defend its rights under this Agreement: (i) challenge or otherwise do anything inconsistent with the other party's right, title or interest in its property, (ii) do or cause to be done or omit to do anything, the doing, caus"
+      }
+    },
+    {
+      "sid": "te00776",
+      "split": "test",
+      "gold": "Non-Compliant",
+      "H": "Compliant",
+      "A1": "Non-Compliant",
+      "llm_calls": 40,
+      "llm_rejected": 11,
+      "H_expanded": 11,
+      "scenario": "Company A and Company B enter into negotiations for a potential joint venture involving chemical informatics. During the discussions, Company A (the 'Receiving Party') receives proprietary information from Company B (the 'Disclosing Party') about its chemical libraries, including sensitive data on chemical structures and business strategies. After three months of negotiations, Company A decides not to proceed with the joint venture. In response to Clause #3, Company A sends an email to Company B stating that it will return all proprietary information and retain only a single copy for legal arc",
+      "clauses": {
+        "evidence_3": "Except to the extent required by law, neither party shall disclose the existence or subject matter of the negotiations or business relationship contemplated by this Agreement.",
+        "evidence_4": "Each undersigned party (the \"Receiving Party\") understands that the other party (the \"Disclosing Party\") has disclosed or may disclose information relating to the Disclosing Party's business particularly relating to uniform informer libraries, chemi-informatic tools and the nature of chemical librar",
+        "evidence_8": "Immediately upon | (i) the decision by either party not to enter into a relationship as a result of the exchange of information hereunder, or | (ii) a request by the Disclosing Party at any time, the Receiving Party will turn over to the Disclosing Party all Proprietary Information of the Disclosing"
+      }
+    }
+  ],
+  "rule_overconstraint": [
+    {
+      "sid": "tr00117",
+      "split": "dev",
+      "gold": "Compliant",
+      "B1": "Non-Compliant",
+      "B0": "Compliant",
+      "pruned": 4,
+      "steps": 3,
+      "expanded": 16,
+      "source": "B1≠B0",
+      "scenario": "Supplier, under a distribution agreement governed by the laws of New York, is obligated to adhere to several clauses involving the ambiguous phrase 'in connection with'. Supplier appoints Reseller to market and sell its products. In compliance with clause evidence_6, Supplier sends an email confirming Reseller’s appointment and granting rights to resell, market, and promote products in the Territory. However, Supplier uses informal phrasing in the email, stating, 'You can go ahead and start promoting our products however you see fit, in connection with what we discussed.' While technically com",
+      "clauses": {
+        "evidence_3": "This Agreement shall be governed by the laws of the State of New York and all disputes and controversies arising out of or in connection with the Agreement shall be brought exclusively before the competent courts in New York County, New York; provided however that judgment shall be enforceable in an",
+        "evidence_6": "In connection with the foregoing appointment, Supplier hereby grants Reseller a non-transferable, revocable, limited right to resell, market, promote, stimulate interest in, and solicit Orders by Customers and/or End Users in the Territory for the Products and to provide services in connection with ",
+        "evidence_7": "In connection with the foregoing appointment, Supplier hereby grants Reseller a non-transferable, revocable, limited right to resell, market, promote, stimulate interest in, and solicit Orders by Customers and/or End Users in the Territory for the Products and to provide services in connection with ",
+        "evidence_9": "ANY SUBSTITUTE GOODS OR SERVICES. THE AGGREGATE LIABILITY OF SUPPLIER UNDER, OR IN CONNECTION WITH, THIS AGREEMENT SHALL BE EQUAL TO THE LESSER OF: (i) ***; AND (ii) ***. | TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL SUPPLIER BE LIABLE UNDER, OR OTHERWISE IN CONNECTION WITH,"
+      }
+    },
+    {
+      "sid": "te00262",
+      "split": "test",
+      "gold": "Compliant",
+      "B1": "Non-Compliant",
+      "B0": "Compliant",
+      "pruned": 101,
+      "steps": 2,
+      "expanded": 16,
+      "source": "B1≠B0",
+      "scenario": "PB entered into a definitive agreement for a Change of Control and exercised its right to make a Change of Control Buy-Out Payment to SFJ within the 120-day timeframe stipulated in evidence_4. However, instead of providing formal written notice via a traditional letter or email, PB communicated the Change of Control Buy-Out Notice through an unconventional method—an annotated shared document in a secure collaboration platform used by both parties. This document included detailed calculations of the Buy-Out Payment, the closing date, and other required elements outlined in the agreement. Despit",
+      "clauses": {
+        "evidence_2": "Notwithstanding any of the foregoing, without the consent of PB, which consent may be withheld in PB's sole discretion, SFJ shall not sell, assign, sublicense or otherwise transfer this Agreement to an entity whose primary business is the development or commercialization of pharmaceutical or biotech",
+        "evidence_4": "Within one hundred and twenty (120) days following the closing of a Change of Control, PB or its successor shall have the right to make a one-time payment (the \"Change of Control Buy-Out Payment\") in lieu of all (but not less than all) remaining Approval Payments for the applicable country(ies) in w",
+        "evidence_5": "PB shall not sell, transfer or assign, directly or indirectly, in whole or in part, any rights to receive payments of royalties or license fees with respect to the Product or the PB Intellectual Property (including any Accounts with respect to such royalties or license fees), other than to a wholly ",
+        "evidence_8": "mutually agreeing to terminate the Phase 3 Trial, in either case ((x) or (y)), due to a Serious Safety Issue that was previously known, demonstrated or identified by PB as being material as of the Effective Date and the material data showing, demonstrating, or identifying such Serious Safety Issue w"
+      }
+    },
+    {
+      "sid": "te00859",
+      "split": "test",
+      "gold": "Not-Applicable",
+      "B1": "Compliant",
+      "B0": "Not-Applicable",
+      "pruned": 17,
+      "steps": 3,
+      "expanded": 16,
+      "source": "B1≠B0",
+      "scenario": "In 2023, Buyer Affiliates are obligated under the contract to purchase a minimum of 10,000 metric tons of Product from ExxonMobil Selling Affiliates as stipulated in the Multi-Conditional Obligation clause. To fulfill this obligation, Buyer Affiliates execute a series of transactions aggregated across their subsidiaries. However, due to logistical constraints in December 2023, the final shipment of 3,000 metric tons is delivered using leased metal crates that are visibly marked with a competitor's branding. This choice is made because the crates were the only available option that complied wit",
+      "clauses": {
+        "evidence_2": "Promptly after any public announcement regarding any proposed transaction that would result in a Change in Circumstances, Buyer/Buyer Affiliates shall notify Seller/ExxonMobil Selling Affiliates, in writing, of the nature of such transaction, the parties thereto and the proposed date of consummation",
+        "evidence_6": "IN NO EVENT SHALL SELLER BE LIABLE FOR SPECIAL, INCIDENTAL, CONSEQUENTIAL OR EXEMPLARY DAMAGES. | Any cause of action that Buyer may have against Seller and which may arise in connection with the transaction(s) specified herein must be commenced within two (2) years after the cause of action has acc"
+      }
+    }
+  ],
+  "mcts_wander": [
+    {
+      "sid": "tr00479",
+      "split": "dev",
+      "gold": "Compliant",
+      "M0": "Not-Applicable",
+      "A0": "Compliant",
+      "expanded": 16,
+      "scenario": "Vyera, seeking to restructure its business operations, assigns the Agreement to a newly created subsidiary, Vyera SubCo, which is wholly owned and operated by Vyera. Vyera SubCo is designed to exclusively handle all contractual obligations related to this Agreement. Vyera notifies CytoDyn of this assignment via email, including a detailed explanation that Vyera SubCo is an Affiliate as defined under the Agreement. However, the email is sent by Vyera's junior operations manager and lacks formal legal letterhead or a traditional signature block. Additionally, the email subject line reads, 'FYI: ",
+      "clauses": {
+        "evidence_3": "CytoDyn may assign this Agreement and its rights and obligations hereunder, in whole but not in part, to any Third Party not in a materially worse (financially and otherwise) of performing CytoDyn's obligations hereunder without the prior written consent of Vyera (it being understood that any other ",
+        "evidence_10": "Each Party shall provide a certificate of insurance (or evidence of self-insurance) evidencing such coverage to the other Party upon reques | Each Party shall provide the other Party with prompt written notice of any cancellation, non-renewal or material change in such insurance that could materiall"
+      }
+    },
+    {
+      "sid": "tr00647",
+      "split": "dev",
+      "gold": "Compliant",
+      "M0": "Not-Applicable",
+      "A0": "Compliant",
+      "expanded": 16,
+      "scenario": "ACSI and Company are engaged in a collaborative project involving the development of a Joint Work. As part of their agreement, ACSI seeks to sublicense a portion of the Company Intellectual Property (CIP) to an affiliate, ACSI Digital Solutions (ADS), in order to develop a new software interface. ACSI sends an email to Company’s legal team formally notifying them of its intent to sublicense the CIP, attaching the draft sublicense agreement for review. However, in the same email chain, a junior ACSI employee casually mentions in a comment that the agreement's formal approval is 'just a formalit",
+      "clauses": {
+        "evidence_5": "registration of any Intellectual Property Rights associated with the Joint Works without the other Party's prior written consent; (b) make, manufacture, assemble, produce, market, sell, distribute, transfer, use, license, seek and obtain registrations of Intellectual Property Rights (subject to para",
+        "evidence_6": "Company hereby grants to ACSI, during the Term, a non-exclusive, non-transferable (except in accordance with Section 11.7 [Assignment]) license, which ACSI may sublicense only to its Affiliates, to use the Company Intellectual Property supplied by Company to ACSI as is reasonably necessary to perfor",
+        "evidence_7": "Company hereby grants to ACSI, during the Term, a non-exclusive, non-transferable (except in accordance with Section 11.7 [Assignment]) license, which ACSI may sublicense only to its Affiliates, to use the Company Intellectual Property supplied by Company to ACSI as is reasonably necessary to perfor",
+        "evidence_9": "EXCEPT TO THE EXTENT AWARDED TO A THIRD PARTY IN A JUDGMENT AGAINST WHICH A PARTY IS ENTITLED TO INDEMNIFICATION PURSUANT TO SECTION 7.2 [Indemnity], OR TO THE EXTENT ARISING OUT OF ANY BREACH OF SECTION 11.4 [Nondisclosure], NEITHER PARTY WILL BE LIABLE (WHETHER IN CONTRACT, WARRANTY, TORT (INCLUDI"
+      }
+    },
+    {
+      "sid": "tr00715",
+      "split": "dev",
+      "gold": "Compliant",
+      "M0": "Not-Applicable",
+      "A0": "Compliant",
+      "expanded": 16,
+      "scenario": "The franchisee ('you'), pursuant to the transfer clause, intended to sell their franchise to a Proposed New Owner. To comply with the obligation requiring payment of all outstanding amounts owed to the franchisor before the transfer (Clause 1(b)), the franchisee issued a payment via wire transfer within the stipulated timeframe but used an unconventional payment reference code that did not specify the franchise location or agreement number. This caused temporary confusion in the franchisor's accounting department, leading to a delay in associating the payment with the correct account. Addition",
+      "clauses": {
+        "evidence_7": "If you propose to Transfer this Agreement, the Franchise or its assets, or any Interest, or if any of your Principal Owners proposes to Transfer a controlling Interest in you or make a Transfer that is one of a series of Transfers which taken together would constitute the Transfer of a controlling I",
+        "evidence_9": "You agree not to use any Mark as part of any corporate or trade name or with any prefix, suffix, or other modifying words, terms, designs, or symbols (other than logos and additional trade and service marks licensed to you under this Agreement), or in any modified form. | As part of the Computer Sys",
+        "evidence_14": "You must provide us with copies of policies evidencing the existence of such insurance concurrently with execution of this Agreement and prior to each subsequent renewal date of each insurance policy, along with certificates evidencing such insurance. | Before you open the Franchise and during any T"
+      }
+    }
+  ]
+}

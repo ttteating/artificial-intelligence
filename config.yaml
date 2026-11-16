@@ -37,9 +37,9 @@ ga:
   lam_exp: 0.5
 
 hybrid:
-  lambda_llm: 0.35
+  lambda_llm: 0.15        # dev 18 组网格最优（logs/lambda_grid.json）
   lambda_clf: 0.30
-  lambda_risk: 0.25
+  lambda_risk: 0.40
 
 llm:
   mode: mock              # off | mock | real

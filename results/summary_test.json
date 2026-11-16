@@ -1,0 +1,258 @@
+{
+  "B0": {
+    "n": 1100,
+    "macro_f1": 0.611,
+    "accuracy": 0.6073,
+    "avg_expanded": 6.21,
+    "avg_steps": 1.858,
+    "redundant_ratio": 0.5397,
+    "avg_llm_calls": 0.0,
+    "goal_rate": 0.4909,
+    "avg_pruned": 0.0,
+    "avg_llm_rejected": 0.0,
+    "recall_Compliant": 0.5947,
+    "recall_Non-Compliant": 0.3875,
+    "recall_Not-Applicable": 0.8969,
+    "confusion": {
+      "Compliant": {
+        "Compliant": 226,
+        "Non-Compliant": 123,
+        "Not-Applicable": 31
+      },
+      "Non-Compliant": {
+        "Compliant": 194,
+        "Non-Compliant": 155,
+        "Not-Applicable": 51
+      },
+      "Not-Applicable": {
+        "Compliant": 15,
+        "Non-Compliant": 18,
+        "Not-Applicable": 287
+      }
+    }
+  },
+  "B1": {
+    "n": 1100,
+    "macro_f1": 0.6214,
+    "accuracy": 0.6145,
+    "avg_expanded": 5.772,
+    "avg_steps": 1.925,
+    "redundant_ratio": 0.4933,
+    "avg_llm_calls": 0.0,
+    "goal_rate": 0.4945,
+    "avg_pruned": 2.749,
+    "avg_llm_rejected": 0.0,
+    "recall_Compliant": 0.6053,
+    "recall_Non-Compliant": 0.4,
+    "recall_Not-Applicable": 0.8938,
+    "confusion": {
+      "Compliant": {
+        "Compliant": 230,
+        "Non-Compliant": 128,
+        "Not-Applicable": 22
+      },
+      "Non-Compliant": {
+        "Compliant": 196,
+        "Non-Compliant": 160,
+        "Not-Applicable": 44
+      },
+      "Not-Applicable": {
+        "Compliant": 16,
+        "Non-Compliant": 18,
+        "Not-Applicable": 286
+      }
+    }
+  },
+  "A0": {
+    "n": 1100,
+    "macro_f1": 0.6263,
+    "accuracy": 0.6182,
+    "avg_expanded": 5.959,
+    "avg_steps": 1.944,
+    "redundant_ratio": 0.506,
+    "avg_llm_calls": 0.0,
+    "goal_rate": 0.4955,
+    "avg_pruned": 0.0,
+    "avg_llm_rejected": 0.0,
+    "recall_Compliant": 0.6079,
+    "recall_Non-Compliant": 0.405,
+    "recall_Not-Applicable": 0.8969,
+    "confusion": {
+      "Compliant": {
+        "Compliant": 231,
+        "Non-Compliant": 133,
+        "Not-Applicable": 16
+      },
+      "Non-Compliant": {
+        "Compliant": 195,
+        "Non-Compliant": 162,
+        "Not-Applicable": 43
+      },
+      "Not-Applicable": {
+        "Compliant": 15,
+        "Non-Compliant": 18,
+        "Not-Applicable": 287
+      }
+    }
+  },
+  "A1": {
+    "n": 1100,
+    "macro_f1": 0.6245,
+    "accuracy": 0.6164,
+    "avg_expanded": 5.848,
+    "avg_steps": 1.988,
+    "redundant_ratio": 0.489,
+    "avg_llm_calls": 0.0,
+    "goal_rate": 0.5018,
+    "avg_pruned": 0.0,
+    "avg_llm_rejected": 0.0,
+    "recall_Compliant": 0.6053,
+    "recall_Non-Compliant": 0.405,
+    "recall_Not-Applicable": 0.8938,
+    "confusion": {
+      "Compliant": {
+        "Compliant": 230,
+        "Non-Compliant": 133,
+        "Not-Applicable": 17
+      },
+      "Non-Compliant": {
+        "Compliant": 195,
+        "Non-Compliant": 162,
+        "Not-Applicable": 43
+      },
+      "Not-Applicable": {
+        "Compliant": 16,
+        "Non-Compliant": 18,
+        "Not-Applicable": 286
+      }
+    }
+  },
+  "A2": {
+    "n": 1100,
+    "macro_f1": 0.6267,
+    "accuracy": 0.6164,
+    "avg_expanded": 5.349,
+    "avg_steps": 1.99,
+    "redundant_ratio": 0.441,
+    "avg_llm_calls": 22.203,
+    "goal_rate": 0.4955,
+    "avg_pruned": 0.0,
+    "avg_llm_rejected": 2.865,
+    "recall_Compliant": 0.6105,
+    "recall_Non-Compliant": 0.405,
+    "recall_Not-Applicable": 0.8875,
+    "confusion": {
+      "Compliant": {
+        "Compliant": 232,
+        "Non-Compliant": 137,
+        "Not-Applicable": 11
+      },
+      "Non-Compliant": {
+        "Compliant": 199,
+        "Non-Compliant": 162,
+        "Not-Applicable": 39
+      },
+      "Not-Applicable": {
+        "Compliant": 17,
+        "Non-Compliant": 19,
+        "Not-Applicable": 284
+      }
+    }
+  },
+  "M0": {
+    "n": 1100,
+    "macro_f1": 0.6098,
+    "accuracy": 0.6073,
+    "avg_expanded": 9.551,
+    "avg_steps": 1.946,
+    "redundant_ratio": 0.6915,
+    "avg_llm_calls": 0.0,
+    "goal_rate": 0.4691,
+    "avg_pruned": 0.0,
+    "avg_llm_rejected": 0.0,
+    "recall_Compliant": 0.6,
+    "recall_Non-Compliant": 0.3775,
+    "recall_Not-Applicable": 0.9031,
+    "confusion": {
+      "Compliant": {
+        "Compliant": 228,
+        "Non-Compliant": 124,
+        "Not-Applicable": 28
+      },
+      "Non-Compliant": {
+        "Compliant": 192,
+        "Non-Compliant": 151,
+        "Not-Applicable": 57
+      },
+      "Not-Applicable": {
+        "Compliant": 16,
+        "Non-Compliant": 15,
+        "Not-Applicable": 289
+      }
+    }
+  },
+  "M1": {
+    "n": 1100,
+    "macro_f1": 0.6264,
+    "accuracy": 0.6164,
+    "avg_expanded": 8.187,
+    "avg_steps": 2.09,
+    "redundant_ratio": 0.6226,
+    "avg_llm_calls": 51.737,
+    "goal_rate": 0.4773,
+    "avg_pruned": 10.148,
+    "avg_llm_rejected": 9.645,
+    "recall_Compliant": 0.6184,
+    "recall_Non-Compliant": 0.4,
+    "recall_Not-Applicable": 0.8844,
+    "confusion": {
+      "Compliant": {
+        "Compliant": 235,
+        "Non-Compliant": 133,
+        "Not-Applicable": 12
+      },
+      "Non-Compliant": {
+        "Compliant": 202,
+        "Non-Compliant": 160,
+        "Not-Applicable": 38
+      },
+      "Not-Applicable": {
+        "Compliant": 16,
+        "Non-Compliant": 21,
+        "Not-Applicable": 283
+      }
+    }
+  },
+  "H": {
+    "n": 1100,
+    "macro_f1": 0.627,
+    "accuracy": 0.6164,
+    "avg_expanded": 5.058,
+    "avg_steps": 2.013,
+    "redundant_ratio": 0.4044,
+    "avg_llm_calls": 18.237,
+    "goal_rate": 0.4982,
+    "avg_pruned": 2.163,
+    "avg_llm_rejected": 2.236,
+    "recall_Compliant": 0.6079,
+    "recall_Non-Compliant": 0.41,
+    "recall_Not-Applicable": 0.8844,
+    "confusion": {
+      "Compliant": {
+        "Compliant": 231,
+        "Non-Compliant": 137,
+        "Not-Applicable": 12
+      },
+      "Non-Compliant": {
+        "Compliant": 198,
+        "Non-Compliant": 164,
+        "Not-Applicable": 38
+      },
+      "Not-Applicable": {
+        "Compliant": 16,
+        "Non-Compliant": 21,
+        "Not-Applicable": 283
+      }
+    }
+  }
+}
