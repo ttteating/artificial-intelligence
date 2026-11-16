@@ -53,11 +53,20 @@ class Corpus:
         self.cache_dir.mkdir(parents=True, exist_ok=True)
         self.split = json.loads(self.split_path.read_text(encoding="utf-8"))
 
-        train = load_raw(self.raw_dir / "train.json")
+        # Use load_raw with split argument to get data consistently with split.json
+        train_indices = load_raw(split="train", raw_dir=self.raw_dir)
         sids = self.split["sids"]
+
+        # Load only the train-split samples by index
+        train_path = self.raw_dir / "train.json"
+        with open(train_path, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+
+        # train_indices gives us the indices into the full train.json scenarios
         for pos_key in ("train_rest", "dev", "heldout"):
             for i in self.split[pos_key]:
-                r = train[i]
+                idx = train_indices[i]  # get the original index from train.json
+                r = data["scenarios"][idx]  # get the sample by index
                 self.scenarios[sids[i]] = Scenario(
                     sid=sids[i], clauses=dict(r["clauses"]),
                     text=r["scenario_text"], label=r["gd_tr"], split=pos_key,
@@ -65,7 +74,7 @@ class Corpus:
 
         test_path = self.raw_dir / "test.json"
         if test_path.exists():
-            for j, r in enumerate(load_raw(test_path)):
+            for j, r in enumerate(load_raw(test_path, split="test")):
                 sid = f"te{j:05d}"
                 self.scenarios[sid] = Scenario(
                     sid=sid, clauses=dict(r["clauses"]),

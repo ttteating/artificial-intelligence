@@ -1,4 +1,4 @@
-﻿# ---------- 数据处理 ----------
+# ---------- 数据处理 ----------
 pandas>=2.0
 numpy>=1.24
 scipy>=1.10                 # scikit-learn 的后端
@@ -13,8 +13,8 @@ scikit-learn>=1.3           # TF-IDF 相似度 + 逻辑回归（终局决策头 
 # 可选：装入 torch 后可切换到 sentence-transformers 后端（--backend st）
 # sentence-transformers>=2.2
 
-# ---------- 机器学习（可选） ----------
-# lightgbm>=4.0             # H/M1 的路径价值分类器默认用逻辑回归，装了会自动切换
+# ---------- 机器学习 ----------
+lightgbm>=4.0             # H/M1 的路径价值分类器（hybrid/path_classifier.py）
 
 # ---------- GA ----------
 # 自实现（4 维实数编码 + SBX + 高斯变异），无需 deap

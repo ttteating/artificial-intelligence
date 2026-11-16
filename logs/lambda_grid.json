@@ -1,0 +1,84 @@
+{
+  "results": [
+    {
+      "λ1": 0.5,
+      "λ2": 0.5,
+      "λ3": 1.0,
+      "λ4": 0.5,
+      "macro_f1": 0.6,
+      "avg_expanded_nodes": 1.0,
+      "score": 0.6
+    },
+    {
+      "λ1": 0.5,
+      "λ2": 0.5,
+      "λ3": 1.0,
+      "λ4": 1.0,
+      "macro_f1": 0.6,
+      "avg_expanded_nodes": 1.0,
+      "score": 0.6
+    },
+    {
+      "λ1": 0.5,
+      "λ2": 1.0,
+      "λ3": 1.0,
+      "λ4": 0.5,
+      "macro_f1": 0.6,
+      "avg_expanded_nodes": 1.0,
+      "score": 0.6
+    },
+    {
+      "λ1": 0.5,
+      "λ2": 1.0,
+      "λ3": 1.0,
+      "λ4": 1.0,
+      "macro_f1": 0.6,
+      "avg_expanded_nodes": 1.0,
+      "score": 0.6
+    },
+    {
+      "λ1": 1.0,
+      "λ2": 0.5,
+      "λ3": 1.0,
+      "λ4": 0.5,
+      "macro_f1": 0.6,
+      "avg_expanded_nodes": 1.0,
+      "score": 0.6
+    },
+    {
+      "λ1": 1.0,
+      "λ2": 0.5,
+      "λ3": 1.0,
+      "λ4": 1.0,
+      "macro_f1": 0.6,
+      "avg_expanded_nodes": 1.0,
+      "score": 0.6
+    },
+    {
+      "λ1": 1.0,
+      "λ2": 1.0,
+      "λ3": 1.0,
+      "λ4": 0.5,
+      "macro_f1": 0.6,
+      "avg_expanded_nodes": 1.0,
+      "score": 0.6
+    },
+    {
+      "λ1": 1.0,
+      "λ2": 1.0,
+      "λ3": 1.0,
+      "λ4": 1.0,
+      "macro_f1": 0.6,
+      "avg_expanded_nodes": 1.0,
+      "score": 0.6
+    }
+  ],
+  "best_lambda": [
+    0.5,
+    0.5,
+    1.0,
+    0.5
+  ],
+  "best_score": 0.6,
+  "score_formula": "macro_f1 - 0.1 * normalized_average_expanded_nodes"
+}

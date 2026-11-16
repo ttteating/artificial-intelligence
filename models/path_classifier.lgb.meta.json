@@ -1,0 +1,31 @@
+{
+  "model_file": "path_classifier.lgb",
+  "train_data_hash": "",
+  "feature_names": [
+    "depth",
+    "num_clauses",
+    "num_used_edges",
+    "edge_type_cites",
+    "edge_type_exception_of",
+    "edge_type_conditions_on",
+    "edge_type_defines",
+    "edge_type_supersedes",
+    "edge_type_same_section",
+    "exception_ratio",
+    "condition_ratio",
+    "sem_sim",
+    "dst_out_degree",
+    "dst_in_degree",
+    "llm_reward_avg",
+    "rule_risk",
+    "has_supersedes",
+    "label_hypothesis_encoded"
+  ],
+  "n_train": null,
+  "pos_ratio": null,
+  "best_iteration": 1,
+  "best_dev_auc": 0.9431329690346084,
+  "seed": null,
+  "trained_at": null,
+  "lightgbm_version": "4.7.0"
+}
