@@ -1,0 +1,117 @@
+{
+ "text": "该场景含 2 条条款，条款图切分为 10 个 facet、10 条带类型边。搜索共扩展 5 个节点，最终证据链为 4 步。\n\n推理链条：第 1 步沿 ENTRY 边从 ROOT 走到 evidence_3#s0（义务/授权主句），从场景切入条款主句，先确定本场景落在哪一条义务/授权之下；第 2 步沿 EXCEPTIONS 边从 evidence_3#s0 走到 evidence_3#s1（例外句），走向例外句，检查刚刚读到的义务是否被豁免；第 3 步沿 EXCEPTIONS 边从 evidence_3#s0 走到 evidence_3#s3（例外句）（同为 EXCEPTIONS 边的第 2 个分支），走向例外句，检查刚刚读到的义务是否被豁免；第 4 步沿 CITES 边从 evidence_3#s0 走到 evidence_4#s0（义务/授权主句），走向被引用条款，确认本条规则的适用范围。\n\n证据充分性：强相关条款 2 条，已审查 2 条（覆盖达标）；场景未见违约线索，不强制解开例外；终局置信度 0.684，门槛 0.60。三项目标测试同时满足，搜索在此终止。 期间规则引擎剪掉 1 个高风险动作，LLM 驳回 1 个语义不合法动作（其中低置信但合法 0 个进入可疑缓冲区）。 终局状态的三项融合信号：llm_reward 1.00（路径语义相关度）、clf_score 0.684（分类器判为正确路径的概率）、risk 0.35（规则风险）；A* 的优先级调整项按 −0.15·reward −0.3·clf +0.4·risk 生效，数值越小越先展开。 本条解释只描述证据链与充分性，最终三分类结果由终局评估器单独给出。",
+ "steps": [
+  {
+   "i": 1,
+   "from": "ROOT",
+   "to": "evidence_3#s0",
+   "edge": "ENTRY",
+   "clause": "evidence_3",
+   "role": "OBL",
+   "excerpt": "Any disclosure of any Confidential Information to the Receiving Party made during the Init…",
+   "g": null,
+   "h": null,
+   "f": null,
+   "conf": null,
+   "llm_reward": null,
+   "clf_score": null,
+   "rule_mask": [],
+   "note": "从场景切入条款主句，先确定本场景落在哪一条义务/授权之下；目标句被判为「义务/授权主句」，与场景的 facet 相似度 0.13"
+  },
+  {
+   "i": 2,
+   "from": "evidence_3#s0",
+   "to": "evidence_3#s1",
+   "edge": "EXCEPTIONS",
+   "clause": "evidence_3",
+   "role": "EXC",
+   "excerpt": "subject to this Agreement for a period of 2 years thereafter",
+   "g": null,
+   "h": null,
+   "f": null,
+   "conf": null,
+   "llm_reward": null,
+   "clf_score": null,
+   "rule_mask": [],
+   "note": "走向例外句，检查刚刚读到的义务是否被豁免；目标句被判为「例外句」，与场景的 facet 相似度 0.02"
+  },
+  {
+   "i": 3,
+   "from": "evidence_3#s0",
+   "to": "evidence_3#s3",
+   "edge": "EXCEPTIONS",
+   "clause": "evidence_3",
+   "role": "EXC",
+   "excerpt": "Notwithstanding anything in section 5.3, the Receiving Party shall not be obliged to retur…",
+   "g": null,
+   "h": null,
+   "f": null,
+   "conf": null,
+   "llm_reward": null,
+   "clf_score": null,
+   "rule_mask": [],
+   "note": "走向例外句，检查刚刚读到的义务是否被豁免；目标句被判为「例外句」，与场景的 facet 相似度 0.35"
+  },
+  {
+   "i": 4,
+   "from": "evidence_3#s0",
+   "to": "evidence_4#s0",
+   "edge": "CITES",
+   "clause": "evidence_4",
+   "role": "OBL",
+   "excerpt": "5.3",
+   "g": null,
+   "h": null,
+   "f": null,
+   "conf": null,
+   "llm_reward": null,
+   "clf_score": null,
+   "rule_mask": [],
+   "note": "走向被引用条款，确认本条规则的适用范围；目标句被判为「义务/授权主句」"
+  }
+ ],
+ "citations": [
+  {
+   "clause": "evidence_3",
+   "excerpt": "Any disclosure of any Confidential Information to the Receiving Party made during the Initial Term shall conti…"
+  },
+  {
+   "clause": "evidence_4",
+   "excerpt": "5.3"
+  }
+ ],
+ "signals": {
+  "llm_reward": 1.0,
+  "clf_score": 0.683943073474209,
+  "risk": 0.35,
+  "rule_hits": {
+   "R5": 1
+  },
+  "expanded_nodes": 5,
+  "pruned_by_rule": 1,
+  "llm_rejected": 1,
+  "llm_suspicious": 0,
+  "llm_calls": 24
+ },
+ "sufficiency": {
+  "covered_clauses": [
+   "evidence_3",
+   "evidence_4"
+  ],
+  "relevant_clauses": [
+   "evidence_3",
+   "evidence_4"
+  ],
+  "coverage_ok": true,
+  "exception_required": false,
+  "exception_ok": true,
+  "confidence": 0.6839,
+  "tau_conf": 0.6,
+  "confidence_ok": true,
+  "reached_goal": true
+ },
+ "mode": "template",
+ "violation": false,
+ "llm_calls": 0,
+ "raw": null
+}

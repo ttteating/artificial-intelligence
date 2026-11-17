@@ -24,7 +24,7 @@ from typing import Callable, Iterable
 from data.clause_graph import (
     E_CONFLICTS, E_EXCEPTIONS, ROLE_COND, ROLE_EXC, ScenarioGraph,
 )
-from data.features import SCENARIO_BREACH_CUES
+from data.features import BREACH_CUES_CJK, SCENARIO_BREACH_CUES
 
 UNDETERMINED = "undetermined"
 LABELS = ("Compliant", "Non-Compliant", "Not-Applicable")
@@ -100,6 +100,9 @@ class SearchResult:
     llm_rejected: int = 0
     llm_suspicious: int = 0
     margins: dict = field(default_factory=dict)
+    # 推理自然语言解释（llm/explainer.py）。默认 None —— 搜索本身不依赖它，
+    # 只有显式调用 explain_result() / API 的 explain=1 时才回填。
+    explanation: dict | None = None
 
     @property
     def steps(self) -> int:
@@ -147,7 +150,8 @@ class SearchProblem:
                           if n.role in (ROLE_EXC, ROLE_COND)}
         self.has_conflict = any(e.etype == E_CONFLICTS
                                 for es in graph.out.values() for e in es)
-        self.breach_flagged = bool(SCENARIO_BREACH_CUES.search(scenario_text))
+        self.breach_flagged = bool(SCENARIO_BREACH_CUES.search(scenario_text)
+                                   or BREACH_CUES_CJK.search(scenario_text))
         self.needs_exc = (self.cfg.require_exception_resolution and self.breach_flagged
                           and bool(self.exc_nodes or self.has_conflict))
 

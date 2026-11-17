@@ -1,0 +1,428 @@
+{
+ "name": "tr00632_H_explained",
+ "answer": "Compliant",
+ "confidence": 0.6839,
+ "expanded_nodes": 5,
+ "steps": 4,
+ "path": [
+  {
+   "src": "ROOT",
+   "edge_type": "ENTRY",
+   "dst": "evidence_3#s0"
+  },
+  {
+   "src": "evidence_3#s0",
+   "edge_type": "EXCEPTIONS",
+   "dst": "evidence_3#s1"
+  },
+  {
+   "src": "evidence_3#s0",
+   "edge_type": "EXCEPTIONS",
+   "dst": "evidence_3#s3"
+  },
+  {
+   "src": "evidence_3#s0",
+   "edge_type": "CITES",
+   "dst": "evidence_4#s0"
+  }
+ ],
+ "trace": [
+  {
+   "action": null,
+   "depth": 0,
+   "g": 0.0,
+   "h": 3.9995,
+   "f": 5.9993,
+   "label": "Compliant",
+   "conf": 0.4024,
+   "clauses": [],
+   "expanded": true,
+   "clf_score": 0.40241345639988507,
+   "adjust": -0.15,
+   "llm_reward": 0.0,
+   "rule_mask": []
+  },
+  {
+   "action": null,
+   "depth": 1,
+   "g": 1.0,
+   "h": 3.1089,
+   "f": 5.6634,
+   "label": "Compliant",
+   "conf": 0.6418,
+   "clauses": [
+    "evidence_3"
+   ],
+   "expanded": true,
+   "clf_score": 0.6417885718405131,
+   "adjust": -0.1516,
+   "llm_reward": 0.8085,
+   "rule_mask": []
+  },
+  {
+   "action": null,
+   "depth": 2,
+   "g": 2.0,
+   "h": 1.2263,
+   "f": 3.8394,
+   "label": "Compliant",
+   "conf": 0.6808,
+   "clauses": [
+    "evidence_3"
+   ],
+   "expanded": true,
+   "clf_score": 0.6808135049839354,
+   "adjust": -0.1505,
+   "llm_reward": 1.0,
+   "rule_mask": []
+  },
+  {
+   "action": null,
+   "depth": 3,
+   "g": 3.0,
+   "h": 0.233,
+   "f": 3.3494,
+   "label": "Compliant",
+   "conf": 0.6589,
+   "clauses": [
+    "evidence_3"
+   ],
+   "expanded": true,
+   "clf_score": 0.6589030496778947,
+   "adjust": -0.0878,
+   "llm_reward": 1.0,
+   "rule_mask": [
+    "R5"
+   ]
+  },
+  {
+   "action": null,
+   "depth": 4,
+   "g": 4.0,
+   "h": 0.2331,
+   "f": 4.3496,
+   "label": "Compliant",
+   "conf": 0.6839,
+   "clauses": [
+    "evidence_3",
+    "evidence_4"
+   ],
+   "expanded": true,
+   "clf_score": 0.683943073474209,
+   "adjust": -0.1217,
+   "llm_reward": 1.0,
+   "rule_mask": []
+  }
+ ],
+ "meta": {
+  "condition": "H",
+  "sid": "tr00632",
+  "gold": "Compliant",
+  "pred": "Compliant",
+  "steps": 4,
+  "expanded": 5,
+  "confidence": 0.6839,
+  "llm_calls": 24
+ },
+ "n_nodes_raw": 13,
+ "tree": [
+  {
+   "tid": 0,
+   "parent": null,
+   "children": [
+    1
+   ],
+   "depth": 0,
+   "node_id": null,
+   "clause": null,
+   "role": null,
+   "action": null,
+   "g": 0.0,
+   "h": 3.9995,
+   "f": 5.9993,
+   "visits": 0,
+   "value": 0.0,
+   "conf": 0.4024,
+   "label": "Compliant",
+   "status": "goal",
+   "flags": [
+    "success_path"
+   ]
+  },
+  {
+   "tid": 1,
+   "parent": 0,
+   "children": [
+    2
+   ],
+   "depth": 1,
+   "node_id": "evidence_3#s0",
+   "clause": "evidence_3",
+   "role": "OBL",
+   "action": {
+    "src": "ROOT",
+    "edge_type": "ENTRY",
+    "dst": "evidence_3#s0"
+   },
+   "g": 1.0,
+   "h": 3.1089,
+   "f": 5.5117,
+   "visits": 0,
+   "value": 0.0,
+   "conf": 0.6418,
+   "label": "Compliant",
+   "status": "goal",
+   "flags": [
+    "success_path"
+   ]
+  },
+  {
+   "tid": 2,
+   "parent": 1,
+   "children": [
+    3
+   ],
+   "depth": 2,
+   "node_id": "evidence_3#s1",
+   "clause": "evidence_3",
+   "role": "EXC",
+   "action": {
+    "src": "evidence_3#s0",
+    "edge_type": "EXCEPTIONS",
+    "dst": "evidence_3#s1"
+   },
+   "g": 2.0,
+   "h": 1.2263,
+   "f": 3.6889,
+   "visits": 0,
+   "value": 0.0,
+   "conf": 0.6808,
+   "label": "Compliant",
+   "status": "goal",
+   "flags": [
+    "success_path"
+   ]
+  },
+  {
+   "tid": 3,
+   "parent": 2,
+   "children": [
+    4,
+    5,
+    6
+   ],
+   "depth": 3,
+   "node_id": "evidence_3#s3",
+   "clause": "evidence_3",
+   "role": "EXC",
+   "action": {
+    "src": "evidence_3#s0",
+    "edge_type": "EXCEPTIONS",
+    "dst": "evidence_3#s3"
+   },
+   "g": 3.0,
+   "h": 0.233,
+   "f": 3.2616,
+   "visits": 0,
+   "value": 0.0,
+   "conf": 0.6589,
+   "label": "Compliant",
+   "status": "goal",
+   "flags": [
+    "success_path"
+   ]
+  },
+  {
+   "tid": 4,
+   "parent": 3,
+   "children": [],
+   "depth": 4,
+   "node_id": "evidence_3#s1",
+   "clause": "evidence_3",
+   "role": "EXC",
+   "action": {
+    "src": "evidence_3#s0",
+    "edge_type": "EXCEPTIONS",
+    "dst": "evidence_3#s1"
+   },
+   "g": 4.0,
+   "h": 0.233,
+   "f": 4.233,
+   "visits": 0,
+   "value": 0.0,
+   "conf": null,
+   "label": null,
+   "status": "pruned",
+   "flags": [
+    "rule_pruned"
+   ]
+  },
+  {
+   "tid": 5,
+   "parent": 3,
+   "children": [],
+   "depth": 4,
+   "node_id": "evidence_3#s2",
+   "clause": "evidence_3",
+   "role": "COND",
+   "action": {
+    "src": "evidence_3#s0",
+    "edge_type": "DEPENDS_ON",
+    "dst": "evidence_3#s2"
+   },
+   "g": 4.0,
+   "h": 0.233,
+   "f": 4.233,
+   "visits": 0,
+   "value": 0.0,
+   "conf": null,
+   "label": null,
+   "status": "pruned",
+   "flags": [
+    "llm_rejected"
+   ]
+  },
+  {
+   "tid": 6,
+   "parent": 3,
+   "children": [],
+   "depth": 4,
+   "node_id": "evidence_4#s0",
+   "clause": "evidence_4",
+   "role": "OBL",
+   "action": {
+    "src": "evidence_3#s0",
+    "edge_type": "CITES",
+    "dst": "evidence_4#s0"
+   },
+   "g": 4.0,
+   "h": 0.2331,
+   "f": 4.228,
+   "visits": 0,
+   "value": 0.0,
+   "conf": 0.6839,
+   "label": "Compliant",
+   "status": "goal",
+   "flags": [
+    "success_path"
+   ]
+  }
+ ],
+ "explanation": {
+  "text": "该场景含 2 条条款，条款图切分为 10 个 facet、10 条带类型边。搜索共扩展 5 个节点，最终证据链为 4 步。\n\n推理链条：第 1 步沿 ENTRY 边从 ROOT 走到 evidence_3#s0（义务/授权主句），从场景切入条款主句，先确定本场景落在哪一条义务/授权之下；第 2 步沿 EXCEPTIONS 边从 evidence_3#s0 走到 evidence_3#s1（例外句），走向例外句，检查刚刚读到的义务是否被豁免；第 3 步沿 EXCEPTIONS 边从 evidence_3#s0 走到 evidence_3#s3（例外句）（同为 EXCEPTIONS 边的第 2 个分支），走向例外句，检查刚刚读到的义务是否被豁免；第 4 步沿 CITES 边从 evidence_3#s0 走到 evidence_4#s0（义务/授权主句），走向被引用条款，确认本条规则的适用范围。\n\n证据充分性：强相关条款 2 条，已审查 2 条（覆盖达标）；场景未见违约线索，不强制解开例外；终局置信度 0.684，门槛 0.60。三项目标测试同时满足，搜索在此终止。 期间规则引擎剪掉 1 个高风险动作，LLM 驳回 1 个语义不合法动作（其中低置信但合法 0 个进入可疑缓冲区）。 终局状态的三项融合信号：llm_reward 1.00（路径语义相关度）、clf_score 0.684（分类器判为正确路径的概率）、risk 0.35（规则风险）；A* 的优先级调整项按 −0.15·reward −0.3·clf +0.4·risk 生效，数值越小越先展开。 本条解释只描述证据链与充分性，最终三分类结果由终局评估器单独给出。",
+  "steps": [
+   {
+    "i": 1,
+    "from": "ROOT",
+    "to": "evidence_3#s0",
+    "edge": "ENTRY",
+    "clause": "evidence_3",
+    "role": "OBL",
+    "excerpt": "Any disclosure of any Confidential Information to the Receiving Party made during the Init…",
+    "g": null,
+    "h": null,
+    "f": null,
+    "conf": null,
+    "llm_reward": null,
+    "clf_score": null,
+    "rule_mask": [],
+    "note": "从场景切入条款主句，先确定本场景落在哪一条义务/授权之下；目标句被判为「义务/授权主句」，与场景的 facet 相似度 0.13"
+   },
+   {
+    "i": 2,
+    "from": "evidence_3#s0",
+    "to": "evidence_3#s1",
+    "edge": "EXCEPTIONS",
+    "clause": "evidence_3",
+    "role": "EXC",
+    "excerpt": "subject to this Agreement for a period of 2 years thereafter",
+    "g": null,
+    "h": null,
+    "f": null,
+    "conf": null,
+    "llm_reward": null,
+    "clf_score": null,
+    "rule_mask": [],
+    "note": "走向例外句，检查刚刚读到的义务是否被豁免；目标句被判为「例外句」，与场景的 facet 相似度 0.02"
+   },
+   {
+    "i": 3,
+    "from": "evidence_3#s0",
+    "to": "evidence_3#s3",
+    "edge": "EXCEPTIONS",
+    "clause": "evidence_3",
+    "role": "EXC",
+    "excerpt": "Notwithstanding anything in section 5.3, the Receiving Party shall not be obliged to retur…",
+    "g": null,
+    "h": null,
+    "f": null,
+    "conf": null,
+    "llm_reward": null,
+    "clf_score": null,
+    "rule_mask": [],
+    "note": "走向例外句，检查刚刚读到的义务是否被豁免；目标句被判为「例外句」，与场景的 facet 相似度 0.35"
+   },
+   {
+    "i": 4,
+    "from": "evidence_3#s0",
+    "to": "evidence_4#s0",
+    "edge": "CITES",
+    "clause": "evidence_4",
+    "role": "OBL",
+    "excerpt": "5.3",
+    "g": null,
+    "h": null,
+    "f": null,
+    "conf": null,
+    "llm_reward": null,
+    "clf_score": null,
+    "rule_mask": [],
+    "note": "走向被引用条款，确认本条规则的适用范围；目标句被判为「义务/授权主句」"
+   }
+  ],
+  "citations": [
+   {
+    "clause": "evidence_3",
+    "excerpt": "Any disclosure of any Confidential Information to the Receiving Party made during the Initial Term shall conti…"
+   },
+   {
+    "clause": "evidence_4",
+    "excerpt": "5.3"
+   }
+  ],
+  "signals": {
+   "llm_reward": 1.0,
+   "clf_score": 0.683943073474209,
+   "risk": 0.35,
+   "rule_hits": {
+    "R5": 1
+   },
+   "expanded_nodes": 5,
+   "pruned_by_rule": 1,
+   "llm_rejected": 1,
+   "llm_suspicious": 0,
+   "llm_calls": 24
+  },
+  "sufficiency": {
+   "covered_clauses": [
+    "evidence_3",
+    "evidence_4"
+   ],
+   "relevant_clauses": [
+    "evidence_3",
+    "evidence_4"
+   ],
+   "coverage_ok": true,
+   "exception_required": false,
+   "exception_ok": true,
+   "confidence": 0.6839,
+   "tau_conf": 0.6,
+   "confidence_ok": true,
+   "reached_goal": true
+  },
+  "mode": "template",
+  "violation": false,
+  "llm_calls": 0,
+  "raw": null
+ }
+}

@@ -11,6 +11,8 @@
 - 搜索树可视化：`results/trees/*.html`（成功 / A\* 误导 / LLM 误判）
 - 失败案例：`results/failure_cases.md`
 - 按跳数分层：`results/stratified_dev.md`、`results/stratified_test.md`
+- **推理自然语言解释**：`python -m tools.explain_case --sid tr00632 --condition H`（`llm/explainer.py`）
+- **HTTP 服务（前端接口）**：`python -m api --port 8000`，文档 `http://127.0.0.1:8000/docs`（`api/`）
 
 ---
 
@@ -25,8 +27,8 @@ python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 ```
 
-依赖只有 CPU 版：`numpy scipy scikit-learn pandas matplotlib networkx pyyaml tqdm`。
-条款图、启发式语义相似度、路径价值分类器、决策头全部在本仓库内用 TF-IDF/词袋 + 逻辑回归实现，**不依赖 sentence-transformers / torch / LightGBM**，因此不需要下载模型权重，也不需要 GPU。
+依赖只有 CPU 版：`numpy scipy scikit-learn pandas matplotlib networkx pyyaml tqdm`，加上 H/M1 用的 `lightgbm`、真实 LLM 通路用的 `openai`、前端接口用的 `fastapi / uvicorn`。
+条款图、启发式语义相似度、路径价值分类器、决策头全部在本仓库内实现；分类器优先加载 `models/path_classifier.lgb`（LightGBM，真实轨迹训练，dev AUC 0.6878），缺失时回退到逻辑回归 `results/models/path_classifier.pkl`。**不需要 GPU，也不需要下载任何模型权重。**
 
 > **Windows + 中文注释的坑**：`requirements.txt` 带中文注释，若文件是 UTF-8 **无 BOM**，pip 23.x 在 Windows 会用 GBK 解码并抛
 > `UnicodeDecodeError: 'gbk' codec can't decode byte ...`。本仓库的 `requirements.txt` 已存为 **UTF-8 with BOM**；
@@ -91,6 +93,96 @@ python -m tools.graph_stats --split test --limit 200
 原因：ACE 的 `train.json` 是按标签排好序的，`sids[:N]` 会取到"清一色 Compliant"的前缀（dev 前 60 条全是 Compliant、前 300 条是 200 Compliant + 100 Non-Compliant），
 F1 会系统性偏低到 0.34 左右。`experiments/runner.py::run_condition` 因此改成随机抽样（种子 = `ctx.seed*7919 + limit`）。
 
+### 4.1 推理自然语言解释（课程第 3 项的第三件事）
+
+`llm/explainer.py` 实现**事后解释**：输入是已经跑完的搜索轨迹（路径每一步的边类型、
+目标 facet、role、g/h/f/conf、LLM reward、规则命中），输出是该证据链的中文说明，
+**不参与搜索、不改答案**，只写进 `SearchResult.explanation`。
+
+```bat
+:: 离线模板解释（无 key、断网可用，答辩现场稳妥）
+python -m tools.explain_case --sid tr00632 --condition H
+
+:: 真实 LLM 解释（需 LLM_API_KEY；越权输出标签词会自动作废并回退模板）
+python -m tools.explain_case --sid tr00632 --condition H --mode real
+
+:: 三棵样例树批量生成 + 导出带解释卡片的搜索树 HTML
+python -m tools.explain_case --preset samples --export-tree
+
+:: 单测（4 条：模板完整性 / 标签越权拦截 / 事实字段不被模型篡改 / 写回不改结果）
+python -m tests.test_explainer
+```
+
+输出落 `results/explanations/{sid}_{condition}.json`，字段：`text` / `steps` / `citations` /
+`signals` / `sufficiency` / `mode` / `violation` / `llm_calls`。
+
+**两条硬约束**（与 `llm/adapter.py` 的搜索侧约束一致，解释侧更严）：
+
+1. 解释文本出现 `Compliant / Non-Compliant / Not-Applicable` → 整段丢弃、回退模板、
+   `violation=true`，原文留在 `raw` 供审计（报告里据此统计"越权率"）。
+2. 模型只许改写措辞：`steps / citations / signals / sufficiency` 一律取自本地轨迹，
+   不采信模型自述 —— 防止"解释编造证据"。
+
+### 4.2 HTTP 服务（供前端调用）
+
+```bat
+:: 启动（默认 127.0.0.1:8000；--reload 为开发模式）
+python -m api --port 8000
+
+:: 或直接 uvicorn
+uvicorn api.main:app --port 8000
+```
+
+服务启动**秒回**，语料在后台加载（约 10 秒，取决于图缓存），`GET /api/health` 的
+`ready=true` 后再发重请求。所有端点都在 `/api/` 下，自动生成 OpenAPI 文档在 `/docs`。
+
+| 方法 | 路径 | 说明 |
+|---|---|---|
+| GET | `/api/health` | 就绪状态、场景数 4,700、图版本 `facet-v2` |
+| GET | `/api/conditions` | 8 个条件的装配说明（内核/规则/h/LLM/分类器） |
+| GET | `/api/overview` | 总览页一次性取齐：dev/test 主表、图统计、三棵树、GA 摘要、λ 最优 |
+| GET | `/api/summary/{split}` | `summary_dev.json` / `summary_test.json` |
+| GET | `/api/table/{name}` | 20 张既有产物表（csv / json / markdown），名单见 `GET /api/tables` |
+| GET | `/api/scenarios` | 场景浏览器：`split/condition/correct/min_hops/max_hops/n_clauses/q/limit/offset` |
+| GET | `/api/scenario/{sid}` | 场景原文 + 全部条款 + 8 条件判定 |
+| GET | `/api/scenario/{sid}/runs` | 只取 8 条件判定 |
+| GET | `/api/graph/{sid}` | facet 条款图（节点带 role/text，边带类型/权重） |
+| GET | `/api/trees`、`/api/tree/{name}` | 三棵样例搜索树（含 `explanation` 字段） |
+| POST | `/api/search` | **现场跑一次搜索**：`{sid, condition, explain, explain_mode, max_expansions}` |
+| POST | `/api/explain` | 只生成解释（`{sid, condition, mode}`） |
+| GET | `/api/llm/report` | 误杀率 JSON + 成本表 / 真实 vs mock 对照 markdown |
+
+`POST /api/search` 返回的 `tree` 已经过 `prune_frontier`（与 SVG 导出一致），
+`meta` 里带场景原文与全部条款，`explanation` 为 `null` 或 §4.1 的结构。
+搜索是 CPU 密集，服务内部用 `Semaphore(1)` 串行执行，并发请求会排队而不是互相拖慢。
+
+### 4.3 前端（Vue 3 · ClauseScope）
+
+正式前端在 `frontend/`，构建产物由本服务托管在 **`/app`**（旧版静态证据册仍在 `/web/`）：
+
+```bat
+:: 一次性安装（Node 18+）
+cd frontend && npm install
+
+:: 开发模式（/api 自动代理到 127.0.0.1:8000）
+npm run dev
+
+:: 构建产物到 frontend/dist（python -m api 会自动挂到 /app）
+npm run build
+```
+
+页面结构：工作台 `/app/workspace`、审查台 `/app/review/new`（粘贴合同 / 数据集场景 → 配置条件与预算 → 现场推理）、
+结果页 `/app/review/:sid?condition=H&budget=16&explain=1`（结论条 + 证据链 + 条款图 + 搜索树 + 轨迹表 + 解释，三视图联动）、
+场景库、评测、LLM 治理、系统。
+
+**客户自己的合同**：`POST /api/scenarios` 接收 `{scenario_text, clauses{evidence_1..10}, title, persist}`，
+登记后返回 `sid`（`cus_xxxxxxxx`），随后照常走 `/api/search`。默认只在内存，`persist=true` 才落 `data/custom/`。
+中文合同支持：TF-IDF 词表来自英文训练集，`data/features.py` 对含中文字符的文本启用**字级 bigram 余弦回退**，
+`detect_role` 用中文句首线索判定例外/条件/引用角色（只对中文生效，不影响英文实验口径，`tests.test_kernels` 11 项全过）。
+
+**就绪约定**：语料加载期间 `/api/search` 等重接口返回 `503 + Retry-After`，前端轮询 `/api/health` 并显示"加载语料中"，
+就绪后自动发起推理。
+
 ## 5. 目录结构
 
 ```
@@ -104,12 +196,13 @@ artificial-intelligence/
 ├── search/               # bfs.py / astar.py / mcts.py / decision.py（终局决策头）
 ├── heuristic/            # handcrafted.py（h_θ）、ga_optimizer.py（GA）
 ├── hybrid/               # rule_engine.py、path_value.py（路径价值分类器）、fusion.py
-├── llm/                  # 校验 / reward / 解释（磁盘缓存，未配置 key 时走确定性 mock）
+├── llm/                  # adapter.py（校验/reward）、explainer.py（自然语言解释）、mock_evaluator.py
+├── api/                  # FastAPI 服务层：schemas.py / service.py / main.py（只读调用实验层）
 ├── eval/                 # metrics.py、visualize_tree.py
 ├── experiments/          # run_ga / run_main_table / run_visuals / run_failure_analysis /
 │                         # run_hparam_sweep / run_decision_eval / run_stratified / runner
-├── tools/                # check_report_numbers.py、graph_stats.py
-├── tests/                # test_kernels.py（11 条）
+├── tools/                # check_report_numbers.py、graph_stats.py、explain_case.py
+├── tests/                # test_kernels.py（11 条）、test_explainer.py（4 条）
 ├── docs/                 # 报告
 ├── results/              # 所有实验产物（见 §3）
 └── run_all.bat
@@ -127,6 +220,8 @@ artificial-intelligence/
 |---|---|
 | 图表中文变成方框、日志里一堆 `Glyph ... missing from font(s) DejaVu Sans` | matplotlib 默认字体不含中文；图像里的标题改用英文（代码已如此），日志中的 warning 不影响结果 |
 | `python -m pip install -r requirements.txt` 报 `UnicodeDecodeError: 'gbk'` | `requirements.txt` 丢了 BOM，见 §1 |
+| 日志出现 `[LightGBM] [Fatal] Could not open D:\...\models\path_classifier.lgb`，随后又 `Model loaded ...` | 中文绝对路径的已知噪声：LightGBM booster 先按原路径打开失败，`hybrid/path_value_lgb.py` 用 `os.path.relpath` 重试后成功加载。不影响结果 |
+| `python -m api` 起来后 `/api/health` 长时间 `ready=false` | 语料在后台加载（首次无图缓存时约 30～60 秒）；看日志出现 `TF-IDF fitted` 即完成 |
 | `run_main_table` 报 `'NoneType' object has no attribute 'items'` | `eval/metrics.py::bucket_by` 被改坏（返回 None）；应返回 `dict[str, list[Row]]` |
 | `ImportError: cannot import name 'PathValueClassifier' from 'hybrid.path_classifier'` | 分类器在 `hybrid/path_value.py`（`experiments/setup.py` 已指向该模块） |
 | `--limit` 下 F1 只有 0.34 | 采样偏差，见 §4；全量 dev 应为 0.63～0.65 |

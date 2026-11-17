@@ -172,6 +172,8 @@ def export(result, out_dir: str | Path, name: str, meta: dict | None = None) -> 
         "meta": meta or {},
         "n_nodes_raw": n_raw,
         "tree": nodes,
+        # 推理自然语言解释（llm/explainer.py）：默认 None，只有显式生成才有
+        "explanation": getattr(result, "explanation", None),
     }
     (out / f"{name}.json").write_text(json.dumps(data, ensure_ascii=False, indent=1),
                                       encoding="utf-8")
@@ -183,6 +185,25 @@ def export(result, out_dir: str | Path, name: str, meta: dict | None = None) -> 
         f"<td>{t.get('f')}</td><td>{t.get('llm_reward', '-')}</td>"
         f"<td>{t.get('clf_score', '-')}</td></tr>"
         for i, t in enumerate(result.trace[:60]))
+
+    exp = getattr(result, "explanation", None) or {}
+    exp_text = (exp.get("text") or "").strip()
+    explain_html = ""
+    if exp_text:
+        paras = "".join(f"<p>{html.escape(p)}</p>" for p in exp_text.split("\n\n") if p.strip())
+        badges = " · ".join(filter(None, [
+            f"mode={html.escape(str(exp.get('mode')))}",
+            "越权检查：通过" if not exp.get("violation") else "越权检查：<b>命中标签词，已回退模板</b>",
+            f"LLM 调用 {exp.get('llm_calls', 0)} 次" if exp.get("llm_calls") else "",
+        ]))
+        cites = "、".join(c.get("clause", "") for c in (exp.get("citations") or [])[:8])
+        explain_html = (
+            f'<div class="card"><div style="font-weight:600;margin-bottom:8px">'
+            f'推理自然语言解释</div>{paras}'
+            f'<div class="sub" style="margin-top:10px">{badges}'
+            + (f" · 证据条款：{html.escape(cites)}" if cites else "")
+            + "</div></div>"
+        )
 
     page = f"""<!DOCTYPE html>
 <html lang="zh-CN"><head><meta charset="utf-8">
@@ -202,6 +223,7 @@ def export(result, out_dir: str | Path, name: str, meta: dict | None = None) -> 
  conf={result.confidence:.3f} · 扩展 {result.expanded_nodes} 节点 · 路径 {result.steps} 步 ·
  {html.escape(json.dumps(meta or {}, ensure_ascii=False))}</div>
 <div class="card">{svg}</div>
+{explain_html}
 <div class="card"><table>
 <tr><th>#</th><th>clauses</th><th>label</th><th>conf</th><th>g</th><th>h</th><th>f</th>
 <th>llm_reward</th><th>clf_score</th></tr>{trace_rows}</table></div>

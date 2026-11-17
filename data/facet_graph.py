@@ -58,6 +58,12 @@ _CONFLICT_HINT = re.compile(
     r"\b(notwithstanding|conflict(?:s|ing)? with|inconsistent with|supersede)", re.IGNORECASE
 )
 _SECTION_REF = re.compile(r"\b(?:section|clause|article)\s+(\d+(?:\.\d+)?)", re.IGNORECASE)
+# 中文合同的条号：第十九条 / 第 9 条。只对含中文字符的片段生效，不影响英文语料。
+_SECTION_REF_CJK = re.compile(r"第\s*(\d+(?:\.\d+)?)\s*条")
+_CJK_XREF = re.compile(r"(依据|根据|按照|依照|本协议第|本合同第)")
+_CJK_TEMPORAL = re.compile(r"(之后|以前|届满|期满|终止后|履行完毕)")
+_EXC_LEAD_CJK = re.compile(r"^\s*(除非|除|尽管|但书)")
+_COND_LEAD_CJK = re.compile(r"^\s*(如果|若|倘若|一旦|在.{0,20}情况下)")
 _WORD = re.compile(r"[a-z]{5,}")
 
 _ROLE_EDGE = {
@@ -127,13 +133,13 @@ def _clash(a: str, b: str) -> bool:
 def _inter_type(text: str) -> str:
     """条款间主句连边的类型判定（看目标条款的线索词）。"""
     head = split_sentences(text, max_parts=1)[0] if text else ""
-    if _EXC_LEAD.search(head) or _EXC_LEAD.search(text[:120]):
+    if _EXC_LEAD.search(head) or _EXC_LEAD.search(text[:120]) or _EXC_LEAD_CJK.search(head):
         return E_EXCEPTIONS
-    if XREF_CUES.search(head):
+    if XREF_CUES.search(head) or _CJK_XREF.search(head):
         return E_CITES
-    if TEMPORAL_CUES.search(head):
+    if TEMPORAL_CUES.search(head) or _CJK_TEMPORAL.search(head):
         return E_SEQUENCE
-    if _COND_LEAD.search(head):
+    if _COND_LEAD.search(head) or _COND_LEAD_CJK.search(head):
         return E_DEPENDS_ON
     return E_COMPLEMENTS
 
@@ -182,7 +188,7 @@ def build_graph(sid: str, clauses: dict, clause_sim: dict | None = None) -> Scen
         for n in g.clause_nodes(cid):
             if n.role not in (ROLE_SCOPE, ROLE_COND, ROLE_DEF):
                 continue
-            for num in _SECTION_REF.findall(n.text):
+            for num in list(_SECTION_REF.findall(n.text)) + list(_SECTION_REF_CJK.findall(n.text)):
                 target = f"evidence_{num.split('.')[0]}"
                 if target in clauses and target != cid:
                     _add(g, n.nid, E_CITES, g.entry_of(target), sim.get(target, 0.5))

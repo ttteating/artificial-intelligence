@@ -1,4 +1,4 @@
-# ---------- 数据处理 ----------
+﻿# ---------- 数据处理 ----------
 pandas>=2.0
 numpy>=1.24
 scipy>=1.10                 # scikit-learn 的后端
@@ -30,3 +30,8 @@ matplotlib>=3.7             # 曲线与柱状图
 # ---------- 工具 ----------
 pyyaml>=6.0
 tqdm>=4.65
+# ---------- HTTP 服务（前端接口） ----------
+fastapi>=0.110             # api/ ：搜索、场景、指标、解释的 REST 接口
+uvicorn>=0.27              # ASGI 运行时；启动 python -m api --port 8000
+# 文档：http://127.0.0.1:8000/docs ；解释演示：POST /api/search {"sid":"tr00632","condition":"H","explain":true}
+# 注：本文件必须保存为 UTF-8(BOM)，否则中文 Windows 下 pip 会 UnicodeDecodeError(GBK)

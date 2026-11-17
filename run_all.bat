@@ -29,8 +29,11 @@ python -m experiments.run_hallucination_sweep || goto :err
 echo == 9. LLM 误杀率 + 调用成本表 ==
 python -m tools.llm_reject_report || goto :err
 python -m tools.llm_cost_table || goto :err
-echo == 10. 内核单元测试 ==
+echo == 10. 内核单元测试 + 解释器单测 ==
 python -m tests.test_kernels || goto :err
+python -m tests.test_explainer || goto :err
+echo == 10b. 推理自然语言解释（三棵样例树）==
+python -m tools.explain_case --preset samples || goto :err
 echo == 11. 报告数字与产物一致性 ==
 python -m tools.check_report_numbers || goto :err
 echo 完成。查看 results/main_table.md / results/figs/ 与 results/trees/

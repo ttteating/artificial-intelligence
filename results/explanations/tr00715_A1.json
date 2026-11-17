@@ -1,0 +1,80 @@
+{
+ "text": "该场景含 3 条条款，条款图切分为 13 个 facet、22 条带类型边。搜索共扩展 16 个节点，最终证据链为 2 步。\n\n推理链条：第 1 步沿 ENTRY 边从 ROOT 走到 evidence_9#s0（例外句），从场景切入条款图中的一个语义单元，作为推理起点（通常是该条款里与场景最相关的一句）；第 2 步沿 CONFLICTS 边从 evidence_9#s0 走到 evidence_14#s0（义务/授权主句），走向与当前条款存在冲突关系的条款，检查两条规则是否互相排斥。\n\n证据充分性：强相关条款 1 条，已审查 2 条（覆盖未达标，缺 evidence_7）；场景出现违约线索，例外须解开且已解开；终局置信度 0.591，门槛 0.60。三项目标测试未同时满足，结果取自预算内最优终局。 终局状态的三项融合信号：llm_reward 0.00（路径语义相关度）、clf_score 0.472（分类器判为正确路径的概率）、risk 0.00（规则风险）；A* 的优先级调整项按 −0.15·reward −0.3·clf +0.4·risk 生效，数值越小越先展开。 本条解释只描述证据链与充分性，最终三分类结果由终局评估器单独给出。",
+ "steps": [
+  {
+   "i": 1,
+   "from": "ROOT",
+   "to": "evidence_9#s0",
+   "edge": "ENTRY",
+   "clause": "evidence_9",
+   "role": "EXC",
+   "excerpt": "You agree not to use any Mark as part of any corporate or trade name or with any prefix, s…",
+   "g": null,
+   "h": null,
+   "f": null,
+   "conf": null,
+   "llm_reward": null,
+   "clf_score": null,
+   "rule_mask": [],
+   "note": "从场景切入条款图中的一个语义单元，作为推理起点（通常是该条款里与场景最相关的一句）；目标句被判为「例外句」，与场景的 facet 相似度 0.02"
+  },
+  {
+   "i": 2,
+   "from": "evidence_9#s0",
+   "to": "evidence_14#s0",
+   "edge": "CONFLICTS",
+   "clause": "evidence_14",
+   "role": "OBL",
+   "excerpt": "You must provide us with copies of policies evidencing the existence of such insurance con…",
+   "g": null,
+   "h": null,
+   "f": null,
+   "conf": null,
+   "llm_reward": null,
+   "clf_score": null,
+   "rule_mask": [],
+   "note": "走向与当前条款存在冲突关系的条款，检查两条规则是否互相排斥；目标句被判为「义务/授权主句」，与场景的 facet 相似度 0.04"
+  }
+ ],
+ "citations": [
+  {
+   "clause": "evidence_14",
+   "excerpt": "You must provide us with copies of policies evidencing the existence of such insurance concurrently with execu…"
+  },
+  {
+   "clause": "evidence_9",
+   "excerpt": "You agree not to use any Mark as part of any corporate or trade name or with any prefix, suffix, or other modi…"
+  }
+ ],
+ "signals": {
+  "llm_reward": 0.0,
+  "clf_score": 0.4718759148788261,
+  "risk": 0.0,
+  "rule_hits": {},
+  "expanded_nodes": 16,
+  "pruned_by_rule": 0,
+  "llm_rejected": 0,
+  "llm_suspicious": 0,
+  "llm_calls": 0
+ },
+ "sufficiency": {
+  "covered_clauses": [
+   "evidence_14",
+   "evidence_9"
+  ],
+  "relevant_clauses": [
+   "evidence_7"
+  ],
+  "coverage_ok": false,
+  "exception_required": true,
+  "exception_ok": true,
+  "confidence": 0.5911,
+  "tau_conf": 0.6,
+  "confidence_ok": false,
+  "reached_goal": false
+ },
+ "mode": "template",
+ "violation": false,
+ "llm_calls": 0,
+ "raw": null
+}

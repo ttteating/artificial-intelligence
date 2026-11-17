@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import math
 import re
+from collections import Counter
 from functools import lru_cache
 from typing import Iterable, Sequence
 
@@ -34,6 +35,24 @@ ROLE_CUES: list[tuple[str, re.Pattern]] = [
         r"\b(indemnif\w*|liable\b|liability\b|damages\b|terminat\w*|"
         r"reimburse\w*|penalt\w*|specific performance)\b", re.I)),
 ]
+
+# ---------------------------------------------------------------- 中文线索（只对中文生效）
+# ACE 语料是英文，下面这组正则不会命中英文文本，因此不影响主表与既有产物；
+# 它只为"客户粘贴中文合同"这条产品路径提供角色判定与违约线索。
+CJK_TEXT = re.compile(r"[\u4e00-\u9fff]")
+
+ROLE_CUES_CJK: list[tuple[str, re.Pattern]] = [
+    ("EXC", re.compile(r"(除非|除[^。；，]{0,25}(?:外|之外)|但书|尽管| notwithstanding)")),
+    ("COND", re.compile(r"(如果|若|倘若|一旦|在[^。；]{0,20}情况下|前提是)")),
+    ("DEF", re.compile(r"(是指|系指|定义为|所称|含义为|以下简称)")),
+    ("SCOPE", re.compile(r"(依据|根据|按照|依照|本协议第|本合同第|第[一二三四五六七八九十\d]+条)")),
+    ("REMEDY", re.compile(r"(违约|赔偿|损害赔偿|终止|解除|救济|责任)")),
+]
+
+BREACH_CUES_CJK = re.compile(
+    r"(未(?:能|经|取得|按|在|及时|履行|通知|获)|违反|违约|擅自|逾期|超出|拒绝|泄露)")
+PERMISSIVE_CUES_CJK = re.compile(r"(可以|有权|允许|授权|无需|不受限制|自行决定)")
+PROHIBITIVE_CUES_CJK = re.compile(r"(不得|禁止|无权|严禁|不能|一概不得)")
 
 # 交叉引用锚点（文档 1.4 节要求的高置信度标记）
 XREF_CUES = re.compile(
@@ -119,6 +138,18 @@ def split_sentences(text: str, max_parts: int = 5, long_words: int = 45) -> list
 
 
 def detect_role(sentence: str, is_first: bool) -> str:
+    # 中文合同走单独的线索表：英文正则里的 \b 对中文不成立，混用会全部落到 OBL。
+    # 例外/条件/引用只在**句首**判定 —— "不得分包，除非取得同意"的主句仍是义务，
+    # 若整句扫描会把带但书的主句误判为例外，条款图的方向就反了。
+    if CJK_TEXT.search(sentence):
+        head = sentence.lstrip()[:16]
+        for role, pat in ROLE_CUES_CJK:
+            if role in ("EXC", "COND", "SCOPE") and pat.search(head):
+                return role
+        for role, pat in ROLE_CUES_CJK:
+            if role in ("DEF", "REMEDY") and pat.search(sentence):
+                return role
+        return "OBL"
     for role, pat in ROLE_CUES:
         if pat.search(sentence):
             return role
@@ -128,8 +159,8 @@ def detect_role(sentence: str, is_first: bool) -> str:
 def polarity_signals(text: str) -> dict[str, float]:
     """道义极性信号：permissive / prohibitive / 负向词密度，均做长度归一。"""
     words = max(1, len(text.split()))
-    per = len(PERMISSIVE_CUES.findall(text)) / math.sqrt(words)
-    pro = len(PROHIBITIVE_CUES.findall(text)) / math.sqrt(words)
+    per = (len(PERMISSIVE_CUES.findall(text)) + len(PERMISSIVE_CUES_CJK.findall(text))) / math.sqrt(words)
+    pro = (len(PROHIBITIVE_CUES.findall(text)) + len(PROHIBITIVE_CUES_CJK.findall(text))) / math.sqrt(words)
     neg = len(NEGATION.findall(text)) / math.sqrt(words)
     return {"permissive": per, "prohibitive": pro, "negation": neg}
 
@@ -138,7 +169,8 @@ def scenario_signals(text: str) -> dict[str, float]:
     words = max(1, len(text.split()))
     n = math.sqrt(words)
     return {
-        "breach": len(SCENARIO_BREACH_CUES.findall(text)) / n,
+        "breach": (len(SCENARIO_BREACH_CUES.findall(text))
+                   + len(BREACH_CUES_CJK.findall(text))) / n,
         "compliant": len(SCENARIO_COMPLIANT_CUES.findall(text)) / n,
         "na": len(SCENARIO_NA_CUES.findall(text)) / n,
         "len_log": math.log1p(words) / 10.0,
@@ -146,6 +178,27 @@ def scenario_signals(text: str) -> dict[str, float]:
 
 
 # ---------------------------------------------------------------- 语义后端
+def _char_ngrams(text: str) -> Counter:
+    """字符 bigram 计数（中文无空格，按字切分比按词更稳）。"""
+    t = re.sub(r"\s+", "", str(text).lower())
+    t = re.sub(r"[^\u4e00-\u9fffA-Za-z0-9]", "", t)
+    if len(t) < 2:
+        return Counter([t]) if t else Counter()
+    return Counter(t[i:i + 2] for i in range(len(t) - 1))
+
+
+def _char_cosine(a: str, b: str) -> float:
+    ca, cb = _char_ngrams(a), _char_ngrams(b)
+    if not ca or not cb:
+        return 0.0
+    dot = sum(count * cb[gram] for gram, count in ca.items() if gram in cb)
+    na = math.sqrt(sum(v * v for v in ca.values()))
+    nb = math.sqrt(sum(v * v for v in cb.values()))
+    if na <= 0 or nb <= 0:
+        return 0.0
+    return max(0.0, min(1.0, dot / (na * nb)))
+
+
 class TfidfSemanticScorer:
     """基于 TF-IDF 余弦的相似度。fit 用训练集的文本，避免 test 泄漏。"""
 
@@ -189,8 +242,13 @@ class TfidfSemanticScorer:
         x, y = v[0], v[1]
         denom = float((x.multiply(x)).sum()) ** 0.5 * float((y.multiply(y)).sum()) ** 0.5
         if denom <= 0:
-            return 0.0
-        return float(np.clip((x.multiply(y)).sum() / denom, 0.0, 1.0))
+            return _char_cosine(a, b)
+        sim = float(np.clip((x.multiply(y)).sum() / denom, 0.0, 1.0))
+        # 词表来自英文训练集：中文合同在这里通常得到 0，用字级 bigram 兜底。
+        # 只在中英混合/纯中文字符串上触发，不影响英文实验口径。
+        if sim == 0.0 and CJK_TEXT.search(a) and CJK_TEXT.search(b):
+            return _char_cosine(a, b)
+        return sim
 
     def pairwise(self, a_vecs, b_vecs):
         """批量化余弦：a_vecs (n,d) 与 b_vecs (m,d) 的内积直接可用（已 L2 归一）。"""

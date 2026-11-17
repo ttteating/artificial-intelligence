@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<title>tr01689_H_explained · 搜索树</title>
+<style>
+ body{margin:0;padding:24px 28px;background:#f8f9fa;color:#212529;
+      font:14px/1.6 Inter,"Segoe UI","Microsoft YaHei",sans-serif}
+ h1{font-size:19px;margin:0 0 4px} .sub{color:#868e96;font-size:12px;margin-bottom:16px}
+ .card{background:#fff;border:1px solid #e9ecef;border-radius:10px;padding:14px;margin-bottom:16px;
+       overflow:auto}
+ table{border-collapse:collapse;font-size:12px;width:100%}
+ th,td{border-bottom:1px solid #f1f3f5;padding:5px 8px;text-align:left}
+ th{background:#f8f9fa;font-weight:600} code{background:#f1f3f5;padding:1px 5px;border-radius:4px}
+</style></head><body>
+<h1>tr01689_H_explained</h1>
+<div class="sub">answer=<code>Compliant</code>
+ conf=0.590 · 扩展 5 节点 · 路径 2 步 ·
+ {&quot;condition&quot;: &quot;H&quot;, &quot;sid&quot;: &quot;tr01689&quot;, &quot;gold&quot;: &quot;Non-Compliant&quot;, &quot;pred&quot;: &quot;Compliant&quot;, &quot;steps&quot;: 2, &quot;expanded&quot;: 5, &quot;confidence&quot;: 0.5904, &quot;llm_calls&quot;: 20}</div>
+<div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="2600" height="592" viewBox="0 0 2600 592" font-family="Inter,Segoe UI,Microsoft YaHei,sans-serif">
+<rect width="2600" height="592" fill="#ffffff"/>
+<path d="M461.3,74.0 C461.3,103.0 124.0,103.0 124.0,132.0" fill="none" stroke="#adb5bd" stroke-width="1.6" opacity="0.85"/>
+<text x="292.7" y="101.0" font-size="9" fill="#adb5bd" text-anchor="middle">ENTRY</text>
+<path d="M461.3,74.0 C461.3,103.0 292.0,103.0 292.0,132.0" fill="none" stroke="#adb5bd" stroke-width="1.6" opacity="0.85"/>
+<text x="376.7" y="101.0" font-size="9" fill="#adb5bd" text-anchor="middle">ENTRY</text>
+<path d="M461.3,74.0 C461.3,103.0 460.0,103.0 460.0,132.0" fill="none" stroke="#adb5bd" stroke-width="1.6" opacity="0.85"/>
+<text x="460.7" y="101.0" font-size="9" fill="#adb5bd" text-anchor="middle">ENTRY</text>
+<path d="M461.3,74.0 C461.3,103.0 969.2,103.0 969.2,132.0" fill="none" stroke="#adb5bd" stroke-width="1.6" opacity="0.85"/>
+<text x="715.3" y="101.0" font-size="9" fill="#adb5bd" text-anchor="middle">ENTRY</text>
+<path d="M969.2,170.0 C969.2,199.0 628.0,199.0 628.0,228.0" fill="none" stroke="#868e96" stroke-width="1.6" opacity="0.85"/>
+<text x="798.6" y="197.0" font-size="9" fill="#868e96" text-anchor="middle">COMPLEMENTS</text>
+<path d="M969.2,170.0 C969.2,199.0 796.0,199.0 796.0,228.0" fill="none" stroke="#868e96" stroke-width="1.6" opacity="0.85"/>
+<text x="882.6" y="197.0" font-size="9" fill="#868e96" text-anchor="middle">COMPLEMENTS</text>
+<path d="M969.2,170.0 C969.2,199.0 964.0,199.0 964.0,228.0" fill="none" stroke="#868e96" stroke-width="1.6" opacity="0.85"/>
+<text x="966.6" y="197.0" font-size="9" fill="#868e96" text-anchor="middle">COMPLEMENTS</text>
+<path d="M969.2,170.0 C969.2,199.0 1489.0,199.0 1489.0,228.0" fill="none" stroke="#e03131" stroke-width="1.6" opacity="0.85"/>
+<text x="1229.1" y="197.0" font-size="9" fill="#e03131" text-anchor="middle">EXCEPTIONS</text>
+<path d="M1489.0,266.0 C1489.0,295.0 1132.0,295.0 1132.0,324.0" fill="none" stroke="#868e96" stroke-width="1.6" opacity="0.85"/>
+<text x="1310.5" y="293.0" font-size="9" fill="#868e96" text-anchor="middle">COMPLEMENTS</text>
+<path d="M1489.0,266.0 C1489.0,295.0 1300.0,295.0 1300.0,324.0" fill="none" stroke="#868e96" stroke-width="1.6" opacity="0.85"/>
+<text x="1394.5" y="293.0" font-size="9" fill="#868e96" text-anchor="middle">COMPLEMENTS</text>
+<path d="M1489.0,266.0 C1489.0,295.0 1468.0,295.0 1468.0,324.0" fill="none" stroke="#868e96" stroke-width="1.6" opacity="0.85"/>
+<text x="1478.5" y="293.0" font-size="9" fill="#868e96" text-anchor="middle">COMPLEMENTS</text>
+<path d="M1489.0,266.0 C1489.0,295.0 2056.0,295.0 2056.0,324.0" fill="none" stroke="#868e96" stroke-width="1.6" opacity="0.85"/>
+<text x="1772.5" y="293.0" font-size="9" fill="#868e96" text-anchor="middle">COMPLEMENTS</text>
+<path d="M2056.0,362.0 C2056.0,391.0 1636.0,391.0 1636.0,420.0" fill="none" stroke="#e03131" stroke-width="1.6" opacity="0.85"/>
+<text x="1846.0" y="389.0" font-size="9" fill="#e03131" text-anchor="middle">EXCEPTIONS</text>
+<path d="M2056.0,362.0 C2056.0,391.0 1804.0,391.0 1804.0,420.0" fill="none" stroke="#868e96" stroke-width="1.6" opacity="0.85"/>
+<text x="1930.0" y="389.0" font-size="9" fill="#868e96" text-anchor="middle">COMPLEMENTS</text>
+<path d="M2056.0,362.0 C2056.0,391.0 1972.0,391.0 1972.0,420.0" fill="none" stroke="#868e96" stroke-width="1.6" opacity="0.85"/>
+<text x="2014.0" y="389.0" font-size="9" fill="#868e96" text-anchor="middle">COMPLEMENTS</text>
+<path d="M2056.0,362.0 C2056.0,391.0 2140.0,391.0 2140.0,420.0" fill="none" stroke="#868e96" stroke-width="1.6" opacity="0.85"/>
+<text x="2098.0" y="389.0" font-size="9" fill="#868e96" text-anchor="middle">COMPLEMENTS</text>
+<path d="M2056.0,362.0 C2056.0,391.0 2308.0,391.0 2308.0,420.0" fill="none" stroke="#868e96" stroke-width="1.6" opacity="0.85"/>
+<text x="2182.0" y="389.0" font-size="9" fill="#868e96" text-anchor="middle">COMPLEMENTS</text>
+<path d="M2056.0,362.0 C2056.0,391.0 2476.0,391.0 2476.0,420.0" fill="none" stroke="#b197fc" stroke-width="1.6" opacity="0.85"/>
+<text x="2266.0" y="389.0" font-size="9" fill="#b197fc" text-anchor="middle">CITES</text>
+<g><title>state: None  depth=0
+g=0.0 h=3.9995 f=5.9993
+label=Compliant conf=0.4024
+flags=success_path</title>
+<rect x="386.3" y="37.0" width="150" height="38" rx="8" fill="#d3f9d8" stroke="#2f9e44" stroke-width="1.6"/>
+<text x="461.3" y="57.0" font-size="11" fill="#212529" text-anchor="middle">- · ROOT</text>
+<text x="461.3" y="70.0" font-size="9" fill="#868e96" text-anchor="middle">d0  g=0 h=4.00  p=0.40</text>
+</g>
+<g><title>state: evidence_2#s0  depth=1
+g=1.0 h=3.9995 f=4.9995
+label=None conf=None
+flags=llm_rejected</title>
+<rect x="49.0" y="133.0" width="150" height="38" rx="8" fill="#fff3bf" stroke="#f08c00" stroke-width="1.6"/>
+<circle cx="60.0" cy="148.0" r="3.4" fill="#0ca678"/>
+<text x="124.0" y="153.0" font-size="11" fill="#212529" text-anchor="middle">DEF · evidence_2</text>
+<text x="124.0" y="166.0" font-size="9" fill="#868e96" text-anchor="middle">d1  g=1 h=4.00</text>
+</g>
+<g><title>state: evidence_3#s0  depth=1
+g=1.0 h=3.9995 f=4.9995
+label=None conf=None
+flags=llm_rejected</title>
+<rect x="217.0" y="133.0" width="150" height="38" rx="8" fill="#fff3bf" stroke="#f08c00" stroke-width="1.6"/>
+<circle cx="228.0" cy="148.0" r="3.4" fill="#0ca678"/>
+<text x="292.0" y="153.0" font-size="11" fill="#212529" text-anchor="middle">DEF · evidence_3</text>
+<text x="292.0" y="166.0" font-size="9" fill="#868e96" text-anchor="middle">d1  g=1 h=4.00</text>
+</g>
+<g><title>state: evidence_5#s0  depth=1
+g=1.0 h=3.9995 f=4.9995
+label=None conf=None
+flags=llm_rejected</title>
+<rect x="385.0" y="133.0" width="150" height="38" rx="8" fill="#fff3bf" stroke="#f08c00" stroke-width="1.6"/>
+<circle cx="396.0" cy="148.0" r="3.4" fill="#0ca678"/>
+<text x="460.0" y="153.0" font-size="11" fill="#212529" text-anchor="middle">DEF · evidence_5</text>
+<text x="460.0" y="166.0" font-size="9" fill="#868e96" text-anchor="middle">d1  g=1 h=4.00</text>
+</g>
+<g><title>state: evidence_1#s0  depth=1
+g=1.0 h=2.2054 f=4.3189
+label=Compliant conf=0.5539
+flags=success_path</title>
+<rect x="894.2" y="133.0" width="150" height="38" rx="8" fill="#d3f9d8" stroke="#2f9e44" stroke-width="1.6"/>
+<circle cx="905.2" cy="148.0" r="3.4" fill="#1c7ed6"/>
+<text x="969.2" y="153.0" font-size="11" fill="#212529" text-anchor="middle">OBL · evidence_1</text>
+<text x="969.2" y="166.0" font-size="9" fill="#868e96" text-anchor="middle">d1  g=1 h=2.21  p=0.55</text>
+</g>
+<g><title>state: evidence_2#s0  depth=2
+g=2.0 h=2.2054 f=4.2054
+label=None conf=None
+flags=llm_rejected</title>
+<rect x="553.0" y="229.0" width="150" height="38" rx="8" fill="#fff3bf" stroke="#f08c00" stroke-width="1.6"/>
+<circle cx="564.0" cy="244.0" r="3.4" fill="#0ca678"/>
+<text x="628.0" y="249.0" font-size="11" fill="#212529" text-anchor="middle">DEF · evidence_2</text>
+<text x="628.0" y="262.0" font-size="9" fill="#868e96" text-anchor="middle">d2  g=2 h=2.21</text>
+</g>
+<g><title>state: evidence_3#s0  depth=2
+g=2.0 h=2.2054 f=4.2054
+label=None conf=None
+flags=llm_rejected</title>
+<rect x="721.0" y="229.0" width="150" height="38" rx="8" fill="#fff3bf" stroke="#f08c00" stroke-width="1.6"/>
+<circle cx="732.0" cy="244.0" r="3.4" fill="#0ca678"/>
+<text x="796.0" y="249.0" font-size="11" fill="#212529" text-anchor="middle">DEF · evidence_3</text>
+<text x="796.0" y="262.0" font-size="9" fill="#868e96" text-anchor="middle">d2  g=2 h=2.21</text>
+</g>
+<g><title>state: evidence_5#s0  depth=2
+g=2.0 h=2.2054 f=4.2054
+label=None conf=None
+flags=llm_rejected</title>
+<rect x="889.0" y="229.0" width="150" height="38" rx="8" fill="#fff3bf" stroke="#f08c00" stroke-width="1.6"/>
+<circle cx="900.0" cy="244.0" r="3.4" fill="#0ca678"/>
+<text x="964.0" y="249.0" font-size="11" fill="#212529" text-anchor="middle">DEF · evidence_5</text>
+<text x="964.0" y="262.0" font-size="9" fill="#868e96" text-anchor="middle">d2  g=2 h=2.21</text>
+</g>
+<g><title>state: evidence_1#s1  depth=2
+g=2.0 h=0.0002 f=2.0109
+label=Compliant conf=0.5904
+flags=success_path</title>
+<rect x="1414.0" y="229.0" width="150" height="38" rx="8" fill="#d3f9d8" stroke="#2f9e44" stroke-width="1.6"/>
+<circle cx="1425.0" cy="244.0" r="3.4" fill="#e03131"/>
+<text x="1489.0" y="249.0" font-size="11" fill="#212529" text-anchor="middle">EXC · evidence_1</text>
+<text x="1489.0" y="262.0" font-size="9" fill="#868e96" text-anchor="middle">d2  g=2 h=0.00  p=0.59</text>
+</g>
+<g><title>state: evidence_2#s0  depth=3
+g=3.0 h=0.0002 f=3.0002
+label=None conf=None
+flags=llm_rejected</title>
+<rect x="1057.0" y="325.0" width="150" height="38" rx="8" fill="#fff3bf" stroke="#f08c00" stroke-width="1.6"/>
+<circle cx="1068.0" cy="340.0" r="3.4" fill="#0ca678"/>
+<text x="1132.0" y="345.0" font-size="11" fill="#212529" text-anchor="middle">DEF · evidence_2</text>
+<text x="1132.0" y="358.0" font-size="9" fill="#868e96" text-anchor="middle">d3  g=3 h=0.00</text>
+</g>
+<g><title>state: evidence_3#s0  depth=3
+g=3.0 h=0.0002 f=3.0002
+label=None conf=None
+flags=llm_rejected</title>
+<rect x="1225.0" y="325.0" width="150" height="38" rx="8" fill="#fff3bf" stroke="#f08c00" stroke-width="1.6"/>
+<circle cx="1236.0" cy="340.0" r="3.4" fill="#0ca678"/>
+<text x="1300.0" y="345.0" font-size="11" fill="#212529" text-anchor="middle">DEF · evidence_3</text>
+<text x="1300.0" y="358.0" font-size="9" fill="#868e96" text-anchor="middle">d3  g=3 h=0.00</text>
+</g>
+<g><title>state: evidence_5#s0  depth=3
+g=3.0 h=0.0002 f=3.0002
+label=None conf=None
+flags=llm_rejected</title>
+<rect x="1393.0" y="325.0" width="150" height="38" rx="8" fill="#fff3bf" stroke="#f08c00" stroke-width="1.6"/>
+<circle cx="1404.0" cy="340.0" r="3.4" fill="#0ca678"/>
+<text x="1468.0" y="345.0" font-size="11" fill="#212529" text-anchor="middle">DEF · evidence_5</text>
+<text x="1468.0" y="358.0" font-size="9" fill="#868e96" text-anchor="middle">d3  g=3 h=0.00</text>
+</g>
+<g><title>state: evidence_2#s0  depth=3
+g=3.0 h=0.0004 f=3.1677
+label=Non-Compliant conf=0.5034
+flags=redundant</title>
+<rect x="1981.0" y="325.0" width="150" height="38" rx="8" fill="#f1f3f5" stroke="#adb5bd" stroke-width="1.6"/>
+<circle cx="1992.0" cy="340.0" r="3.4" fill="#0ca678"/>
+<text x="2056.0" y="345.0" font-size="11" fill="#212529" text-anchor="middle">DEF · evidence_2</text>
+<text x="2056.0" y="358.0" font-size="9" fill="#868e96" text-anchor="middle">d3  g=3 h=0.00  p=0.50</text>
+</g>
+<g><title>state: evidence_1#s1  depth=4
+g=4.0 h=0.0004 f=4.0004
+label=None conf=None
+flags=rule_pruned</title>
+<rect x="1561.0" y="421.0" width="150" height="38" rx="8" fill="#ede7f6" stroke="#7048e8" stroke-width="1.6"/>
+<circle cx="1572.0" cy="436.0" r="3.4" fill="#e03131"/>
+<text x="1636.0" y="441.0" font-size="11" fill="#212529" text-anchor="middle">EXC · evidence_1</text>
+<text x="1636.0" y="454.0" font-size="9" fill="#868e96" text-anchor="middle">d4  g=4 h=0.00</text>
+</g>
+<g><title>state: evidence_3#s0  depth=4
+g=4.0 h=0.0004 f=4.0004
+label=None conf=None
+flags=llm_rejected</title>
+<rect x="1729.0" y="421.0" width="150" height="38" rx="8" fill="#fff3bf" stroke="#f08c00" stroke-width="1.6"/>
+<circle cx="1740.0" cy="436.0" r="3.4" fill="#0ca678"/>
+<text x="1804.0" y="441.0" font-size="11" fill="#212529" text-anchor="middle">DEF · evidence_3</text>
+<text x="1804.0" y="454.0" font-size="9" fill="#868e96" text-anchor="middle">d4  g=4 h=0.00</text>
+</g>
+<g><title>state: evidence_5#s0  depth=4
+g=4.0 h=0.0004 f=4.0004
+label=None conf=None
+flags=llm_rejected</title>
+<rect x="1897.0" y="421.0" width="150" height="38" rx="8" fill="#fff3bf" stroke="#f08c00" stroke-width="1.6"/>
+<circle cx="1908.0" cy="436.0" r="3.4" fill="#0ca678"/>
+<text x="1972.0" y="441.0" font-size="11" fill="#212529" text-anchor="middle">DEF · evidence_5</text>
+<text x="1972.0" y="454.0" font-size="9" fill="#868e96" text-anchor="middle">d4  g=4 h=0.00</text>
+</g>
+<g><title>state: evidence_3#s0  depth=4
+g=4.0 h=0.0004 f=4.0004
+label=None conf=None
+flags=llm_rejected</title>
+<rect x="2065.0" y="421.0" width="150" height="38" rx="8" fill="#fff3bf" stroke="#f08c00" stroke-width="1.6"/>
+<circle cx="2076.0" cy="436.0" r="3.4" fill="#0ca678"/>
+<text x="2140.0" y="441.0" font-size="11" fill="#212529" text-anchor="middle">DEF · evidence_3</text>
+<text x="2140.0" y="454.0" font-size="9" fill="#868e96" text-anchor="middle">d4  g=4 h=0.00</text>
+</g>
+<g><title>state: evidence_5#s0  depth=4
+g=4.0 h=0.0004 f=4.0004
+label=None conf=None
+flags=llm_rejected</title>
+<rect x="2233.0" y="421.0" width="150" height="38" rx="8" fill="#fff3bf" stroke="#f08c00" stroke-width="1.6"/>
+<circle cx="2244.0" cy="436.0" r="3.4" fill="#0ca678"/>
+<text x="2308.0" y="441.0" font-size="11" fill="#212529" text-anchor="middle">DEF · evidence_5</text>
+<text x="2308.0" y="454.0" font-size="9" fill="#868e96" text-anchor="middle">d4  g=4 h=0.00</text>
+</g>
+<g><title>state: evidence_1#s0  depth=4
+g=4.0 h=0.0005 f=4.0608
+label=Non-Compliant conf=0.5215
+flags=redundant</title>
+<rect x="2401.0" y="421.0" width="150" height="38" rx="8" fill="#f1f3f5" stroke="#adb5bd" stroke-width="1.6"/>
+<circle cx="2412.0" cy="436.0" r="3.4" fill="#1c7ed6"/>
+<text x="2476.0" y="441.0" font-size="11" fill="#212529" text-anchor="middle">OBL · evidence_1</text>
+<text x="2476.0" y="454.0" font-size="9" fill="#868e96" text-anchor="middle">d4  g=4 h=0.00  p=0.52</text>
+</g>
+<rect x="40" y="12" width="12" height="12" rx="3" fill="#d3f9d8" stroke="#2f9e44"/>
+<text x="57" y="22" font-size="10" fill="#495057">成功路径/目标</text>
+<rect x="137" y="12" width="12" height="12" rx="3" fill="#f1f3f5" stroke="#adb5bd"/>
+<text x="154" y="22" font-size="10" fill="#495057">冗余分支</text>
+<rect x="201" y="12" width="12" height="12" rx="3" fill="#ede7f6" stroke="#7048e8"/>
+<text x="218" y="22" font-size="10" fill="#495057">规则剪枝</text>
+<rect x="265" y="12" width="12" height="12" rx="3" fill="#fff3bf" stroke="#f08c00"/>
+<text x="282" y="22" font-size="10" fill="#495057">LLM 驳回</text>
+<rect x="351" y="12" width="12" height="12" rx="3" fill="#e7f5ff" stroke="#1c7ed6"/>
+<text x="368" y="22" font-size="10" fill="#495057">已扩展</text>
+</svg></div>
+<div class="card"><div style="font-weight:600;margin-bottom:8px">推理自然语言解释</div><p>该场景含 4 条条款，条款图切分为 5 个 facet、13 条带类型边。搜索共扩展 5 个节点，最终证据链为 2 步。</p><p>推理链条：第 1 步沿 ENTRY 边从 ROOT 走到 evidence_1#s0（义务/授权主句），从场景切入条款主句，先确定本场景落在哪一条义务/授权之下；第 2 步沿 EXCEPTIONS 边从 evidence_1#s0 走到 evidence_1#s1（例外句），走向例外句，检查刚刚读到的义务是否被豁免。</p><p>证据充分性：强相关条款 1 条，已审查 1 条（覆盖达标）；场景未见违约线索，不强制解开例外；终局置信度 0.590，门槛 0.60。三项目标测试未同时满足，结果取自预算内最优终局。 期间规则引擎剪掉 1 个高风险动作，LLM 驳回 13 个语义不合法动作（其中低置信但合法 0 个进入可疑缓冲区）。 终局状态的三项融合信号：llm_reward 0.51（路径语义相关度）、clf_score 0.522（分类器判为正确路径的概率）、risk 0.40（规则风险）；A* 的优先级调整项按 −0.15·reward −0.3·clf +0.4·risk 生效，数值越小越先展开。 本条解释只描述证据链与充分性，最终三分类结果由终局评估器单独给出。</p><div class="sub" style="margin-top:10px">mode=template · 越权检查：通过 · 证据条款：evidence_1</div></div>
+<div class="card"><table>
+<tr><th>#</th><th>clauses</th><th>label</th><th>conf</th><th>g</th><th>h</th><th>f</th>
+<th>llm_reward</th><th>clf_score</th></tr><tr><td>0</td><td>[]</td><td>Compliant</td><td>0.4024</td><td>0.0</td><td>3.9995</td><td>5.9993</td><td>0.0</td><td>0.40241345639988507</td></tr><tr><td>1</td><td>['evidence_1']</td><td>Compliant</td><td>0.5539</td><td>1.0</td><td>2.2054</td><td>4.308</td><td>0.2812</td><td>0.5538573969204225</td></tr><tr><td>2</td><td>['evidence_1']</td><td>Compliant</td><td>0.5904</td><td>2.0</td><td>0.0002</td><td>2.0004</td><td>0.5733</td><td>0.5904459634638057</td></tr><tr><td>3</td><td>['evidence_1', 'evidence_2']</td><td>Non-Compliant</td><td>0.5034</td><td>3.0</td><td>0.0004</td><td>3.0005</td><td>0.4946</td><td>0.5034116409895142</td></tr><tr><td>4</td><td>['evidence_1', 'evidence_2']</td><td>Non-Compliant</td><td>0.5215</td><td>4.0</td><td>0.0005</td><td>4.0007</td><td>0.5072</td><td>0.5215302972329333</td></tr></table></div>
+</body></html>
