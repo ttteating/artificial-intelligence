@@ -16,3 +16,7 @@ results/cache/
 data/raw/
 models/pc_*.lgb.meta.json
 models/*.synthetic_backup*
+
+# 前端
+frontend/node_modules/
+
