@@ -1,0 +1,215 @@
+{
+  "sid": "tr3271",
+  "graph_version": "v2.1",
+  "n_nodes": 15,
+  "n_edges": 16,
+  "entry": [
+    "n005",
+    "n011"
+  ],
+  "nodes": [
+    {
+      "nid": "n000",
+      "clause": "clause_004",
+      "role": "reviewer",
+      "text": "条款 1 描述",
+      "sent_idx": 15
+    },
+    {
+      "nid": "n001",
+      "clause": "clause_011",
+      "role": "obligee",
+      "text": "条款 2 描述",
+      "sent_idx": 44
+    },
+    {
+      "nid": "n002",
+      "clause": "clause_009",
+      "role": "drafter",
+      "text": "条款 3 描述",
+      "sent_idx": 41
+    },
+    {
+      "nid": "n003",
+      "clause": "clause_001",
+      "role": "signatory",
+      "text": "条款 4 描述",
+      "sent_idx": 82
+    },
+    {
+      "nid": "n004",
+      "clause": "clause_010",
+      "role": "reviewer",
+      "text": "条款 5 描述",
+      "sent_idx": 41
+    },
+    {
+      "nid": "n005",
+      "clause": "clause_011",
+      "role": "approver",
+      "text": "条款 6 描述",
+      "sent_idx": 64
+    },
+    {
+      "nid": "n006",
+      "clause": "clause_009",
+      "role": "signatory",
+      "text": "条款 7 描述",
+      "sent_idx": 65
+    },
+    {
+      "nid": "n007",
+      "clause": "clause_002",
+      "role": "obligee",
+      "text": "条款 8 描述",
+      "sent_idx": 91
+    },
+    {
+      "nid": "n008",
+      "clause": "clause_007",
+      "role": "drafter",
+      "text": "条款 9 描述",
+      "sent_idx": 94
+    },
+    {
+      "nid": "n009",
+      "clause": "clause_020",
+      "role": "obligor",
+      "text": "条款 10 描述",
+      "sent_idx": 71
+    },
+    {
+      "nid": "n010",
+      "clause": "clause_005",
+      "role": "signatory",
+      "text": "条款 11 描述",
+      "sent_idx": 27
+    },
+    {
+      "nid": "n011",
+      "clause": "clause_008",
+      "role": "reviewer",
+      "text": "条款 12 描述",
+      "sent_idx": 34
+    },
+    {
+      "nid": "n012",
+      "clause": "clause_004",
+      "role": "signatory",
+      "text": "条款 13 描述",
+      "sent_idx": 83
+    },
+    {
+      "nid": "n013",
+      "clause": "clause_006",
+      "role": "drafter",
+      "text": "条款 14 描述",
+      "sent_idx": 66
+    },
+    {
+      "nid": "n014",
+      "clause": "clause_004",
+      "role": "obligee",
+      "text": "条款 15 描述",
+      "sent_idx": 80
+    }
+  ],
+  "edges": [
+    {
+      "src": "n010",
+      "etype": "supports",
+      "dst": "n004",
+      "w": 1.76
+    },
+    {
+      "src": "n011",
+      "etype": "refers_to",
+      "dst": "n007",
+      "w": 1.07
+    },
+    {
+      "src": "n000",
+      "etype": "supports",
+      "dst": "n011",
+      "w": 0.81
+    },
+    {
+      "src": "n005",
+      "etype": "supports",
+      "dst": "n001",
+      "w": 0.77
+    },
+    {
+      "src": "n012",
+      "etype": "refers_to",
+      "dst": "n004",
+      "w": 0.5
+    },
+    {
+      "src": "n007",
+      "etype": "refers_to",
+      "dst": "n008",
+      "w": 0.72
+    },
+    {
+      "src": "n005",
+      "etype": "refers_to",
+      "dst": "n000",
+      "w": 1.2
+    },
+    {
+      "src": "n005",
+      "etype": "supports",
+      "dst": "n002",
+      "w": 1.2
+    },
+    {
+      "src": "n005",
+      "etype": "contradicts",
+      "dst": "n005",
+      "w": 1.68
+    },
+    {
+      "src": "n009",
+      "etype": "refers_to",
+      "dst": "n012",
+      "w": 1.8
+    },
+    {
+      "src": "n003",
+      "etype": "refers_to",
+      "dst": "n012",
+      "w": 1.17
+    },
+    {
+      "src": "n006",
+      "etype": "refers_to",
+      "dst": "n000",
+      "w": 1.8
+    },
+    {
+      "src": "n001",
+      "etype": "supports",
+      "dst": "n013",
+      "w": 0.94
+    },
+    {
+      "src": "n013",
+      "etype": "supports",
+      "dst": "n006",
+      "w": 1.88
+    },
+    {
+      "src": "n013",
+      "etype": "contradicts",
+      "dst": "n013",
+      "w": 1.36
+    },
+    {
+      "src": "n001",
+      "etype": "refers_to",
+      "dst": "n005",
+      "w": 1.97
+    }
+  ]
+}

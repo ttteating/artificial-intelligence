@@ -21,6 +21,7 @@ lightgbm>=4.0             # H/M1 的路径价值分类器（hybrid/path_classifi
 
 # ---------- LLM（可选，仅 --llm real 需要） ----------
 openai>=1.30                # llm/adapter.py 的真实通路；无 key 时自动回退 mock
+python-dotenv>=1.0          # 读取项目根目录 .env（llm/env.py）
 # 冒烟：python -m tools.llm_smoke
 
 # ---------- 可视化 ----------

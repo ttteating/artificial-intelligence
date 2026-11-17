@@ -20,6 +20,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 
 from data.clause_graph import E_CONFLICTS, E_DEPENDS_ON, E_EXCEPTIONS, ROLE_EXC
+from llm.env import load_project_env
 from state.core import Action, State
 
 LABEL_WORDS = ("compliant", "non-compliant", "not-applicable", "not applicable")
@@ -53,6 +54,7 @@ class LLMClient:
     _client: object | None = field(default=None, repr=False)
 
     def __post_init__(self):
+        load_project_env()
         self.api_key = self.api_key or os.environ.get("LLM_API_KEY")
         self.base_url = self.base_url or os.environ.get("LLM_BASE_URL")
         self.model = os.environ.get("LLM_MODEL", self.model)

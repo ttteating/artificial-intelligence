@@ -12,6 +12,8 @@ Thumbs.db
 
 .venv/
 **/__pycache__/
+.env
+!.env.example
 results/cache/
 data/raw/
 models/pc_*.lgb.meta.json

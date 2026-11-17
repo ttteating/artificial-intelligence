@@ -1,0 +1,338 @@
+{
+  "sid": "tr8457",
+  "condition": "B1",
+  "answer": "Not-Applicable",
+  "confidence": 0.954,
+  "steps": 8,
+  "expanded_nodes": 23,
+  "reached_goal": true,
+  "llm_calls": 6,
+  "pruned_by_rule": 1,
+  "llm_rejected": 1,
+  "llm_mode": "mock",
+  "tree": [
+    {
+      "tid": 0,
+      "parent": null,
+      "children": [],
+      "depth": 0,
+      "node_id": "n0",
+      "clause": "clause_019",
+      "role": "drafter",
+      "action": {
+        "src": "c11",
+        "edge_type": "refers_to",
+        "dst": "c17"
+      },
+      "g": 1.75,
+      "h": 2.82,
+      "f": 3.87,
+      "visits": 27,
+      "value": 0.743,
+      "conf": 0.471,
+      "label": "Not-Applicable",
+      "status": "frontier",
+      "flags": [
+        "flag_0",
+        "flag_1",
+        "flag_2"
+      ]
+    },
+    {
+      "tid": 1,
+      "parent": 0,
+      "children": [],
+      "depth": 1,
+      "node_id": "n1",
+      "clause": "clause_020",
+      "role": "signatory",
+      "action": {
+        "src": "c5",
+        "edge_type": "refers_to",
+        "dst": "c3"
+      },
+      "g": 4.14,
+      "h": 0.43,
+      "f": 7.78,
+      "visits": 23,
+      "value": 0.91,
+      "conf": 0.786,
+      "label": "Compliant",
+      "status": "goal",
+      "flags": [
+        "flag_0"
+      ]
+    },
+    {
+      "tid": 2,
+      "parent": 1,
+      "children": [],
+      "depth": 2,
+      "node_id": "n2",
+      "clause": "clause_007",
+      "role": "approver",
+      "action": {
+        "src": "c7",
+        "edge_type": "refers_to",
+        "dst": "c6"
+      },
+      "g": 3.97,
+      "h": 4.86,
+      "f": 2.22,
+      "visits": 33,
+      "value": 0.912,
+      "conf": 0.509,
+      "label": "Not-Applicable",
+      "status": "goal",
+      "flags": []
+    },
+    {
+      "tid": 3,
+      "parent": 2,
+      "children": [],
+      "depth": 3,
+      "node_id": "n3",
+      "clause": "clause_010",
+      "role": "approver",
+      "action": {
+        "src": "c5",
+        "edge_type": "refers_to",
+        "dst": "c16"
+      },
+      "g": 2.49,
+      "h": 3.8,
+      "f": 9.1,
+      "visits": 70,
+      "value": 0.901,
+      "conf": 0.844,
+      "label": "Compliant",
+      "status": "frontier",
+      "flags": [
+        "flag_0",
+        "flag_1"
+      ]
+    },
+    {
+      "tid": 4,
+      "parent": 3,
+      "children": [],
+      "depth": 4,
+      "node_id": "n4",
+      "clause": "clause_013",
+      "role": "drafter",
+      "action": {
+        "src": "c12",
+        "edge_type": "refers_to",
+        "dst": "c17"
+      },
+      "g": 3.87,
+      "h": 2.45,
+      "f": 1.99,
+      "visits": 24,
+      "value": 0.733,
+      "conf": 0.285,
+      "label": "Non-Compliant",
+      "status": "deadend",
+      "flags": [
+        "flag_0",
+        "flag_1",
+        "flag_2"
+      ]
+    }
+  ],
+  "n_nodes_raw": 93,
+  "trace": [
+    {
+      "action": {
+        "src": "clause_004",
+        "edge_type": "refers_to",
+        "dst": "clause_017"
+      },
+      "depth": 2,
+      "g": 3.7,
+      "h": 1.11,
+      "f": 4.91,
+      "label": "Not-Applicable",
+      "conf": 0.836,
+      "clauses": [
+        "clause_005"
+      ],
+      "clf_score": 0.462,
+      "llm_reward": null,
+      "rule_mask": null,
+      "adjust": null,
+      "expanded": false
+    },
+    {
+      "action": {
+        "src": "clause_003",
+        "edge_type": "refers_to",
+        "dst": "clause_011"
+      },
+      "depth": 0,
+      "g": 2.06,
+      "h": 0.57,
+      "f": 4.09,
+      "label": "Compliant",
+      "conf": 0.914,
+      "clauses": [
+        "clause_017"
+      ],
+      "clf_score": null,
+      "llm_reward": 0.971,
+      "rule_mask": [
+        "rule_0"
+      ],
+      "adjust": null,
+      "expanded": true
+    },
+    {
+      "action": {
+        "src": "clause_020",
+        "edge_type": "refers_to",
+        "dst": "clause_009"
+      },
+      "depth": 2,
+      "g": 1.59,
+      "h": 1.84,
+      "f": 7.03,
+      "label": "Non-Compliant",
+      "conf": 0.863,
+      "clauses": [
+        "clause_007",
+        "clause_015"
+      ],
+      "clf_score": 0.091,
+      "llm_reward": 0.057,
+      "rule_mask": null,
+      "adjust": -0.85,
+      "expanded": false
+    }
+  ],
+  "path": [
+    {
+      "src": "clause_012",
+      "edge_type": "supports",
+      "dst": "clause_018"
+    },
+    {
+      "src": "clause_019",
+      "edge_type": "refers_to",
+      "dst": "clause_008"
+    },
+    {
+      "src": "clause_019",
+      "edge_type": "contradicts",
+      "dst": "clause_017"
+    }
+  ],
+  "meta": {
+    "sid": "tr6226",
+    "condition": "B1",
+    "gold": "Not-Applicable",
+    "pred": "Not-Applicable",
+    "steps": 6,
+    "expanded": 31,
+    "confidence": 0.602,
+    "llm_calls": 7,
+    "n_clauses": 21,
+    "scenario": "sim_1",
+    "path": [
+      {
+        "src": "c5",
+        "edge_type": "refers_to",
+        "dst": "c18"
+      },
+      {
+        "src": "c11",
+        "edge_type": "refers_to",
+        "dst": "c4"
+      }
+    ],
+    "n_relevant": 3
+  },
+  "explanation": {
+    "text": "基于证据链分析，判定为 Not-Applicable",
+    "steps": [
+      {
+        "i": 0,
+        "from": "clause_002",
+        "to": "clause_003",
+        "edge": "supports",
+        "clause": "clause_010",
+        "role": "reviewer",
+        "excerpt": "证据 0",
+        "g": 0.31,
+        "h": 1.33,
+        "f": 1.13,
+        "conf": 0.897,
+        "llm_reward": 0.708,
+        "clf_score": 0.895,
+        "rule_mask": null,
+        "note": "步骤 0 备注",
+        "llm_note": "LLM 0"
+      },
+      {
+        "i": 1,
+        "from": "clause_005",
+        "to": "clause_015",
+        "edge": "refers_to",
+        "clause": "clause_021",
+        "role": "approver",
+        "excerpt": "证据 1",
+        "g": 0.25,
+        "h": 2.15,
+        "f": 4.31,
+        "conf": 0.803,
+        "llm_reward": 0.737,
+        "clf_score": 0.383,
+        "rule_mask": null,
+        "note": "步骤 1 备注",
+        "llm_note": "LLM 1"
+      }
+    ],
+    "citations": [
+      {
+        "clause": "clause_015",
+        "excerpt": "引文 0"
+      }
+    ],
+    "signals": {
+      "llm_reward": 0.602,
+      "clf_score": 0.038,
+      "risk": 2,
+      "rule_hits": {
+        "rule_0": 3
+      },
+      "expanded_nodes": 6,
+      "pruned_by_rule": 2,
+      "llm_rejected": 0,
+      "llm_calls": 1
+    },
+    "sufficiency": {
+      "covered_clauses": [
+        "clause_000",
+        "clause_001",
+        "clause_002"
+      ],
+      "relevant_clauses": [
+        "clause_000",
+        "clause_001",
+        "clause_002",
+        "clause_003"
+      ],
+      "coverage_ok": false,
+      "exception_required": true,
+      "exception_ok": false,
+      "confidence": 0.514,
+      "tau_conf": 0.628,
+      "confidence_ok": true,
+      "reached_goal": true
+    },
+    "mode": "auto",
+    "violation": false,
+    "llm_calls": 9,
+    "raw": null
+  },
+  "elapsed_ms": 683
+}
